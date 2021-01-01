@@ -20,7 +20,7 @@ set smartcase
 set noswapfile
 set incsearch
 set nobackup
-set undodir=~/.vim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 set colorcolumn=80
 set splitbelow
