@@ -37,7 +37,7 @@ source $HOME/.config/nvim/plug-config/coc.vim " Intellisense completion for Neov
 
 "-----------------------------Plugins(Vim-Plug)---------------------------------
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'jremmen/vim-ripgrep'        " grep for vim
 Plug 'leafgarland/typescript-vim' " typescript syntax for vim
