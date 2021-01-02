@@ -68,9 +68,9 @@ call plug#end()
 " let g:gruvbox_material_transparent_background=1
 colorscheme gruvbox-material
 
-let g:lightline = {
-  \ 'colorscheme': 'gruvbox_material',
-  \ }
+"let g:lightline = {
+"  \ 'colorscheme': 'gruvbox_material',
+"  \ }
 
 " SPACEDUCK config for changing terminal color.
 "............................................................................... 
