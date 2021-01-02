@@ -26,6 +26,7 @@ set colorcolumn=80
 set splitbelow
 set splitright
 set noshowmode
+set mouse=a " Allow for mouse interaction for window resizing and movement.
 
 set termguicolors " Allow for al 24 million color choices in terminal.
 
