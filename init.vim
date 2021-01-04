@@ -26,7 +26,7 @@ set colorcolumn=80
 set splitbelow
 set splitright
 set noshowmode
-"set mouse=a " Allow for mouse interaction for window resizing and movement.
+"set mouse=a      " Allow for mouse interaction for window resizing and movement.
 
 set termguicolors " Allow for al 24 million color choices in terminal.
 
@@ -34,7 +34,7 @@ set pyxversion=3
 
 filetype off
 
-source $HOME/.config/nvim/plug-config/coc.vim " Intellisense completion for Neovim
+source $HOME/.config/nvim/plug-config/coc.vim " Path to config file for coc.
 
 "-----------------------------Plugins(Vim-Plug)---------------------------------
 
@@ -47,19 +47,19 @@ Plug 'vim-utils/vim-man'          " man page for vim
 
 "...............................................................................
 
-Plug 'sainnhe/gruvbox-material' " gruvbox, just better.
-Plug 'morhetz/gruvbox'          " gruvbox normal colorscheme.
-Plug 'senran101604/neotrix.vim' " Cool retro colorscheme.
-Plug 'joshdick/onedark.vim'     " onedark theme from the Atom Editor, just nice.
-Plug 'pineapplegiant/spaceduck' "spaceduck colorscheme
+Plug 'sainnhe/gruvbox-material'   " gruvbox, just better.
+Plug 'morhetz/gruvbox'            " gruvbox normal colorscheme.
+Plug 'senran101604/neotrix.vim'   " Cool retro colorscheme.
+Plug 'joshdick/onedark.vim'       " onedark theme from the Atom Editor, just nice.
+Plug 'pineapplegiant/spaceduck'   "spaceduck colorscheme
 
 "...............................................................................
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "installs fzf to system
-Plug 'junegunn/fzf.vim' "installs fzf to vim
-Plug 'itchyny/lightline.vim' "custom status line for vim
-Plug 'sheerun/vim-polyglot' "advanced syntax highlighting for many languages
-Plug 'neoclide/coc.nvim', {'branch': 'release'} "Vim autocomplete
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " installs fzf to system
+Plug 'junegunn/fzf.vim'                             " installs fzf to vim
+Plug 'itchyny/lightline.vim'                        " custom status line for vim
+Plug 'sheerun/vim-polyglot'                         " advanced syntax highlighting for many languages
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Intellisense completion for Neovim
 
 call plug#end()
 
