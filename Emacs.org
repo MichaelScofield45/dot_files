@@ -21,7 +21,18 @@
 
 #+begin_src emacs-lisp
 
-(set-face-attribute 'default nil :font "Fira Code Nerd Font" :height 100) ; Setting Fira Code as font.
+(set-face-attribute 'default nil :font "Fira Code Nerd Font" :height 100)
+
+#+end_src
+
+** Background Opacity (NOT WORKING)
+
+#+begin_src emacs-lisp
+
+  ;;(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
+   ;;(set-frame-parameter (selected-frame) 'alpha <both>)
+   ;; (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+   ;; (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 
 #+end_src
 
@@ -50,10 +61,10 @@
 
 #+begin_src emacs-lisp
 
-(setq-default electric-indent-inhibit t) ; Make electric behave in a normal way. (global-whitespace-mode)
-(setq backward-delete-char-untabify-method 'hungry)
-;; (setq-default indent-tabs-mode t)
-(setq-default c-basic-offset 4) ; Set C indent to 4.
+  (setq-default electric-indent-inhibit t) ; Make electric behave in a normal way. (global-whitespace-mode)
+  (setq backward-delete-char-untabify-method nil)
+  ;; (setq-default indent-tabs-mode t)
+  (setq-default c-basic-offset 4) ; Set C indent to 4.
 
 #+end_src
 
@@ -79,38 +90,39 @@
 
 #+begin_src emacs-lisp
 
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")))
+  (require 'package)
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                           ("org" . "https://orgmode.org/elpa/")
+                           ("gnu" . "http://elpa.gnu.org/packages/")))
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
 
 #+end_src
 
 ** Custom-set-variables
 
-#+begin_src emacs-lisp
+# #+begin_src emacs-lisp
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("78c4238956c3000f977300c8a079a3a8a8d4d9fee2e68bad91123b58a4aa8588" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" "83c118cbcc517539597657b57c6743e394f03ea20405937c7ae2b691ec2718c1" "bd82c92996136fdacbb4ae672785506b8d1d1d511df90a502674a51808ecc89f" "711efe8b1233f2cf52f338fd7f15ce11c836d0b6240a18fffffc2cbd5bfe61b0" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "d6603a129c32b716b3d3541fc0b6bfe83d0e07f1954ee64517aa62c9405a3441" "b89ae2d35d2e18e4286c8be8aaecb41022c1a306070f64a66fd114310ade88aa" default))
- '(package-selected-packages
-   '(gruvbox-theme org magit evil evil-mode which-key doom-themes rainbow-delimiters doom-modeline use-package highlight-indent-guides company)))
+# (custom-set-variables
+# ;; custom-set-variables was added by Custom.
+# ;; If you edit it by hand, you could mess it up, so be careful.
+# ;; Your init file should contain only one such instance.
+# ;; If there is more than one, they won't work right.
+# '(custom-safe-themes
+# '("78c4238956c3000f977300c8a079a3a8a8d4d9fee2e68bad91123b58a4aa8588" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" "83c118cbcc517539597657b57c6743e394f03ea20405937c7ae2b691ec2718c1" "bd82c92996136fdacbb4ae672785506b8d1d1d511df90a502674a51808ecc89f" "711efe8b1233f2cf52f338fd7f15ce11c836d0b6240a18fffffc2cbd5bfe61b0" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "d6603a129c32b716b3d3541fc0b6bfe83d0e07f1954ee64517aa62c9405a3441" "b89ae2d35d2e18e4286c8be8aaecb41022c1a306070f64a66fd114310ade88aa" default))
+# '(package-selected-packages
+#   '(gruvbox-theme org magit evil evil-mode which-key doom-themes rainbow-delimiters doom-modeline use-package highlight-indent-guides company)))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+# (custom-set-faces
+# ;; custom-set-faces was added by Custom.
+# ;; If you edit it by hand, you could mess it up, so be careful.
+# ;; Your init file should contain only one such instance.
+# ;; If there is more than one, they won't work right.
+# )
 
-#+end_src
+# #+end_src
 
 ** Use-package configuration
 
@@ -245,3 +257,15 @@
 #+RESULTS:
 : Hello World!
 
+** Lsp-mode
+
+#+begin_src emacs-lisp
+
+  (use-package lsp-mode
+    :config
+    (lsp-idle-delay 0.1)
+    :hook
+    (c-mode . lsp)
+    (cpp-mode . lsp))
+
+#+end_src
