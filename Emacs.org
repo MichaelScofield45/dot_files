@@ -61,10 +61,21 @@
 
 #+begin_src emacs-lisp
 
-  (setq-default electric-indent-inhibit t) ; Make electric behave in a normal way. (global-whitespace-mode)
+  (setq-default tab-width 4)
+  (setq-default electric-indent-inhibit nil) ; Make electric behave in a normal way. (global-whitespace-mode)
   (setq backward-delete-char-untabify-method nil)
-  ;; (setq-default indent-tabs-mode t)
+  (setq-default indent-tabs-mode nil)
   (setq-default c-basic-offset 4) ; Set C indent to 4.
+
+#+end_src
+
+** Aoutcomplete Brackets
+
+#+begin_src emacs-lisp
+
+(electric-pair-mode 1)
+(setq show-paren-style 'parenthesis)
+(show-paren-mode 0) ; Disabled becaus of Rainbow-delimiters
 
 #+end_src
 
@@ -77,11 +88,36 @@
 
 #+end_src
 
-** Window movement
+** Window movement (NOT USED)
+
+# #+begin_src emacs-lisp
+
+# (windmove-default-keybindings)
+
+# #+end_src
+
+** Eshell
+
+This next function is made to be able to truly clear the shell prompt with the *clear* command.
+
+# #+begin_src emacs-lisp
+
+#   (defun eshell/clear ()
+#     (interactive)
+#     "Clear the shell buffer."
+#     (let ((inhibit-read-only t))
+#       (erase-buffer)))
+
+#   (add-hook 'eshell-mode-hook 'eshell/clear)
+
+
+# #+end_src
+
+** Ibuffer
 
 #+begin_src emacs-lisp
 
-(windmove-default-keybindings)
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 #+end_src
 
@@ -140,11 +176,11 @@
 
 #+begin_src emacs-lisp
 
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 0.3))
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 0.3))
 
 #+end_src
 
@@ -172,12 +208,13 @@
 *** General settings
 #+begin_src emacs-lisp
 
-(use-package org
-  :config
-  (defun turn-on-org-settings ()
-    (org-indent-mode)
-    (visual-line-mode))
-  :hook(org-mode . turn-on-org-settings))
+  (use-package org
+    :config
+      (defun turn-on-org-settings ()
+        (setq org-startup-indented t
+              org-startup-folded t)
+              (visual-line-mode))
+    :hook (org-mode . turn-on-org-settings))
 
 #+end_src
 
@@ -198,10 +235,12 @@
 
 #+begin_src emacs-lisp
 
-(use-package company
-  :config
-  (setq company-idle-delay 0) ; Tell company-mode to be immediate.
-  :hook (prog-mode . company-mode))
+  (use-package company
+    :config
+      (setq company-idle-delay 0) ; Tell company-mode to be immediate.
+      (setq compan-minimum-prefix-length 1)
+    :hook (prog-mode . company-mode))
+
 
 #+end_src
 
@@ -212,9 +251,9 @@
 
 (use-package doom-themes
   :config
-  (setq doom-themes-enable-bold t)
-  (setq doom-themes-enable-italic t)
-  (load-theme 'doom-one t)) ; Might switch between "one" and "gruvbox", both are pretty good.
+    (setq doom-themes-enable-bold t)
+    (setq doom-themes-enable-italic t)
+    (load-theme 'doom-one t)) ; Might switch between "one" and "gruvbox", both are pretty good.
 
 #+end_src
 
@@ -224,7 +263,7 @@
 
 (use-package doom-modeline
   :config
-  :init (doom-modeline-mode 1))
+    (doom-modeline-mode 1))
 
 #+end_src
 
@@ -244,28 +283,28 @@
 
 #+end_src
 
-# * TestCode
-
-#+begin_src python :results output
-
- a = 5
- b = 4
- print("Hello World!")
-
-#+end_src
-
-#+RESULTS:
-: Hello World!
-
 ** Lsp-mode
 
 #+begin_src emacs-lisp
 
   (use-package lsp-mode
+    :init
+      (setq lsp-keymap-prefix "C-c l")
     :config
-    (lsp-idle-delay 0.1)
-    :hook
-    (c-mode . lsp)
-    (cpp-mode . lsp))
+      (setq lsp-idle-delay 0.500)
+      (setq lsp-enable-snippet nil))
+    ;:hook
+      ;; (c-mode . lsp)
+      ;; (cpp-mode . lsp)
+      ;; (lsp-mode . lsp-enable-which-key-integration))
 
 #+end_src
+
+** Treemacs
+
+#+begin_src emacs-lisp
+
+  (use-package treemacs)
+
+#+end_src
+
