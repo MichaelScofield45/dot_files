@@ -269,6 +269,16 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+end_src
 
+** Org-superstar
+
+#+begin_src emacs-lisp
+
+  (use-package org-superstar
+    ; :config (setq org-superstar-headline-bullets-list '("⬢" "◆" "▲" "■"))
+    :hook (org-mode . org-superstar-mode))
+
+#+end_src
+
 ** Company-mode
 
 #+begin_src emacs-lisp
@@ -358,12 +368,3 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+end_src
 
-** Org-superstar
-
-#+begin_src emacs-lisp
-
-  (use-package org-superstar
-    ; :config (setq org-superstar-headline-bullets-list '("⬢" "◆" "▲" "■"))
-    :hook (org-mode . org-superstar-mode))
-
-#+end_src
