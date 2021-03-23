@@ -35,8 +35,6 @@ set pyxversion=3
 
 filetype off
 
-source $HOME/.config/nvim/plug-config/coc.vim " Path to config file for coc.
-
 "-----------------------------Plugins(Vim-Plug)---------------------------------
 
 call plug#begin('~/.config/nvim/plugged')
