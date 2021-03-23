@@ -46,7 +46,7 @@ Plug 'vim-utils/vim-man'          " man page for vim
 "...............................................................................
 
 Plug 'sainnhe/gruvbox-material'   " gruvbox, just better.
-Plug 'morhetz/gruvbox'            " gruvbox normal colorscheme.
+Plug 'gruvbox-community/gruvbox'            " gruvbox normal colorscheme.
 Plug 'senran101604/neotrix.vim'   " Cool retro colorscheme.
 Plug 'joshdick/onedark.vim'       " onedark theme from the Atom Editor, just nice.
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }   " spaceduck colorscheme
@@ -57,7 +57,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " installs fzf to system
 Plug 'junegunn/fzf.vim'                             " installs fzf to vim
 Plug 'itchyny/lightline.vim'                        " custom status line for vim
 Plug 'sheerun/vim-polyglot'                         " advanced syntax highlighting for many languages
-Plug 'nvim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
