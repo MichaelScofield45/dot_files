@@ -11,11 +11,12 @@ syntax on
 
 set noerrorbells
 set nu rnu
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
 set tabstop=4 softtabstop=4 shiftwidth=4
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
 set expandtab
 set smartindent
 set nowrap
+set hidden
 set smartcase
 set noswapfile
 set incsearch
@@ -43,7 +44,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'jremmen/vim-ripgrep'        " grep for vim
 Plug 'leafgarland/typescript-vim' " typescript syntax for vim
 Plug 'vim-utils/vim-man'          " man page for vim
-"Plug 'mbbill/undotree'           " Visualize undo steps in a tree-like manner.
 
 "...............................................................................
 
@@ -51,7 +51,7 @@ Plug 'sainnhe/gruvbox-material'   " gruvbox, just better.
 Plug 'morhetz/gruvbox'            " gruvbox normal colorscheme.
 Plug 'senran101604/neotrix.vim'   " Cool retro colorscheme.
 Plug 'joshdick/onedark.vim'       " onedark theme from the Atom Editor, just nice.
-Plug 'pineapplegiant/spaceduck'   "spaceduck colorscheme
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }   " spaceduck colorscheme
 
 "...............................................................................
 
@@ -80,9 +80,24 @@ colorscheme gruvbox-material
 "      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "      set termguicolors
 "    endif
+" let g:lightline = {
+"     \ 'colorscheme': 'spaceduck',
+"     \ }
 "...............................................................................
 
 "--------------------------------Plugin-Setups----------------------------------
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+  },
+}
+EOF
 
 let g:netrw_banner=0 " Disable file-manager top banner.
 
