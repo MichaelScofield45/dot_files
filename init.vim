@@ -57,7 +57,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " installs fzf to system
 Plug 'junegunn/fzf.vim'                             " installs fzf to vim
 Plug 'itchyny/lightline.vim'                        " custom status line for vim
 Plug 'sheerun/vim-polyglot'                         " advanced syntax highlighting for many languages
-Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Intellisense completion for Neovim
+Plug 'nvim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
 
