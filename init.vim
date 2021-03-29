@@ -27,11 +27,9 @@ set colorcolumn=80
 set splitbelow
 set splitright
 set noshowmode
-"set mouse=a      " Allow for mouse interaction for window resizing and movement.
+set mouse=a      " Allow for mouse interaction for window resizing and movement.
 
 set termguicolors " Allow for al 24 million color choices in terminal.
-
-set pyxversion=3
 
 filetype off
 
@@ -62,10 +60,19 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
 
+"--------------------------------LanguageServers--------------------------------
+" C/C++ lsp
+lua << EOF
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.jedi_language_server.setup{}
+EOF
+
+
+
 
 "--------------------------------ColorScheme------------------------------------
 " let g:gruvbox_material_transparent_background=1
-colorscheme gruvbox-material
+" colorscheme gruvbox-material
 
 "let g:lightline = {
 "  \ 'colorscheme': 'gruvbox_material',
@@ -73,15 +80,15 @@ colorscheme gruvbox-material
 
 " SPACEDUCK config for changing terminal color.
 "............................................................................... 
-"colorscheme spaceduck 
-"if exists('+termguicolors')
-"      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"      set termguicolors
-"    endif
-" let g:lightline = {
-"     \ 'colorscheme': 'spaceduck',
-"     \ }
+if exists('+termguicolors')
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+      set termguicolors
+    endif
+ let g:lightline = {
+     \ 'colorscheme': 'spaceduck',
+     \ }
+colorscheme spaceduck 
 "...............................................................................
 
 "--------------------------------Plugin-Setups----------------------------------

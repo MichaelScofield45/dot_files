@@ -342,11 +342,25 @@ This next function is made to be able to truly clear the shell prompt with the *
       (setq lsp-keymap-prefix "C-c l")
     :config
       (setq lsp-idle-delay 0.500)
-      (setq lsp-enable-snippet nil))
-    ;:hook
-      ;; (c-mode . lsp)
-      ;; (cpp-mode . lsp)
-      ;; (lsp-mode . lsp-enable-which-key-integration))
+      (setq lsp-enable-snippet nil)
+    :hook
+      (c-mode . lsp)
+      (c++-mode . lsp)
+      (python-mode . lsp)
+      (lsp-mode . lsp-enable-which-key-integration))
+
+#+end_src
+
+** Lsp-jedi 
+
+#+begin_src emacs-lisp
+
+  (add-to-list 'exec-path "/home/ms45/.local/bin/")
+  (use-package lsp-jedi)
+    ;; :config
+    ;; (with-eval-after-load "lsp-mode"
+    ;;   (add-to-list 'lsp-disabled-clients 'pyls)
+    ;;   (add-to-list 'lsp-enabled-clients 'jedi)))
 
 #+end_src
 
