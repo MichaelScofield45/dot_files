@@ -84,7 +84,7 @@
 
 #+begin_src emacs-lisp
 
-(ido-mode t)
+  (ido-mode t)
 
 #+end_src
 
@@ -188,11 +188,11 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+begin_src emacs-lisp
 
-;; (use-package evil
-;;   :init 
-;;   (setq evil-want-C-u-scroll t) ; Allow scrolling up with ^u.
-;;   :config
-;;   (evil-mode 0))
+  (use-package evil
+    :init 
+    (setq evil-want-C-u-scroll t) ; Allow scrolling up with ^u.
+    :config
+    (evil-mode 0))
 
 #+end_src
 
@@ -342,11 +342,12 @@ This next function is made to be able to truly clear the shell prompt with the *
       (setq lsp-keymap-prefix "C-c l")
     :config
       (setq lsp-idle-delay 0.500)
-      (setq lsp-enable-snippet nil)
+      (setq lsp-enable-snippet 1)
     :hook
       (c-mode . lsp)
       (c++-mode . lsp)
       (python-mode . lsp)
+      (javascript-mode . lsp)
       (lsp-mode . lsp-enable-which-key-integration))
 
 #+end_src
@@ -382,3 +383,29 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+end_src
 
+** Yasnippet
+
+#+begin_src emacs-lisp
+
+  (use-package yasnippet
+    :config
+    (yas-global-mode 1))
+
+#+end_src
+
+*** Yasnippet-snippets
+
+#+begin_src emacs-lisp
+
+  (use-package yasnippet-snippets)
+
+#+end_src
+
+** Expand-region
+
+#+begin_src emacs-lisp
+
+  (use-package expand-region
+    :bind ("C-=" . er/expand-region))
+
+#+end_src
