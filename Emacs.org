@@ -8,12 +8,12 @@
 
 #+begin_src emacs-lisp
 
-(setq inhibit-startup-message t) ; Get rid of the beginup bloat and menus.
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(tooltip-mode -1)
-(set-fringe-mode 10)
+  (setq inhibit-startup-message t) ; Get rid of the beginup bloat and menus.
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
 
 #+end_src
 
@@ -22,17 +22,6 @@
 #+begin_src emacs-lisp
 
 (set-face-attribute 'default nil :font "Fira Code Nerd Font" :height 110)
-
-#+end_src
-
-** Background Opacity (NOT WORKING)
-
-#+begin_src emacs-lisp
-
-  ;;(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
-   ;;(set-frame-parameter (selected-frame) 'alpha <both>)
-   ;; (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
-   ;; (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 
 #+end_src
 
@@ -57,25 +46,14 @@
 
 #+end_src
 
-** Set indent behavior
+
+** Autocomplete Brackets
 
 #+begin_src emacs-lisp
 
-  (setq-default tab-width 4)
-  (setq-default electric-indent-inhibit nil) ; Make electric behave in a normal way. (global-whitespace-mode)
-  (setq backward-delete-char-untabify-method nil)
-  (setq-default indent-tabs-mode nil)
-  (setq-default c-basic-offset 4) ; Set C indent to 4.
-
-#+end_src
-
-** Aoutcomplete Brackets
-
-#+begin_src emacs-lisp
-
-(electric-pair-mode 1)
-(setq show-paren-style 'parenthesis)
-(show-paren-mode 0) ; Disabled becaus of Rainbow-delimiters
+  (electric-pair-mode 1)
+  (setq show-paren-style 'parenthesis)
+  (show-paren-mode 0) ; Disabled becaus of Rainbow-delimiters
 
 #+end_src
 
@@ -88,36 +66,23 @@
 
 #+end_src
 
-** Window movement (NOT USED)
-
-# #+begin_src emacs-lisp
-
-# (windmove-default-keybindings)
-
-# #+end_src
-
-** Eshell
-
-This next function is made to be able to truly clear the shell prompt with the *clear* command.
-
-# #+begin_src emacs-lisp
-
-#   (defun eshell/clear ()
-#     (interactive)
-#     "Clear the shell buffer."
-#     (let ((inhibit-read-only t))
-#       (erase-buffer)))
-
-#   (add-hook 'eshell-mode-hook 'eshell/clear)
-
-
-# #+end_src
-
 ** Ibuffer
 
 #+begin_src emacs-lisp
 
   (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+#+end_src
+
+** Set indent behavior
+
+#+begin_src emacs-lisp
+
+  (setq-default tab-width 4)
+  (setq-default electric-indent-inhibit nil) ; Make electric behave in a normal way. (global-whitespace-mode)
+  (setq backward-delete-char-untabify-method nil)
+  (setq-default indent-tabs-mode nil)
+  (setq-default c-basic-offset 4) ; Set C indent to 4.
 
 #+end_src
 
@@ -137,38 +102,15 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+end_src
 
-** Custom-set-variables
-
-# #+begin_src emacs-lisp
-
-# (custom-set-variables
-# ;; custom-set-variables was added by Custom.
-# ;; If you edit it by hand, you could mess it up, so be careful.
-# ;; Your init file should contain only one such instance.
-# ;; If there is more than one, they won't work right.
-# '(custom-safe-themes
-# '("78c4238956c3000f977300c8a079a3a8a8d4d9fee2e68bad91123b58a4aa8588" "d2e0c53dbc47b35815315fae5f352afd2c56fa8e69752090990563200daae434" "83c118cbcc517539597657b57c6743e394f03ea20405937c7ae2b691ec2718c1" "bd82c92996136fdacbb4ae672785506b8d1d1d511df90a502674a51808ecc89f" "711efe8b1233f2cf52f338fd7f15ce11c836d0b6240a18fffffc2cbd5bfe61b0" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "d6603a129c32b716b3d3541fc0b6bfe83d0e07f1954ee64517aa62c9405a3441" "b89ae2d35d2e18e4286c8be8aaecb41022c1a306070f64a66fd114310ade88aa" default))
-# '(package-selected-packages
-#   '(gruvbox-theme org magit evil evil-mode which-key doom-themes rainbow-delimiters doom-modeline use-package highlight-indent-guides company)))
-
-# (custom-set-faces
-# ;; custom-set-faces was added by Custom.
-# ;; If you edit it by hand, you could mess it up, so be careful.
-# ;; Your init file should contain only one such instance.
-# ;; If there is more than one, they won't work right.
-# )
-
-# #+end_src
-
 ** Use-package configuration
 
 #+begin_src emacs-lisp
 
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
 
-(require 'use-package)
-(setq use-package-always-ensure t)
+  (require 'use-package)
+  (setq use-package-always-ensure t)
 
 #+end_src
 
@@ -200,7 +142,7 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+begin_src emacs-lisp
 
-(use-package magit)
+  (use-package magit)
 
 #+end_src
 
@@ -297,8 +239,8 @@ This next function is made to be able to truly clear the shell prompt with the *
 
 #+begin_src emacs-lisp
 
-(use-package doom-themes
-  :config
+  (use-package doom-themes
+    :config
     (setq doom-themes-enable-bold t)
     (setq doom-themes-enable-italic t)
     (load-theme 'doom-one t)) ; Might switch between "one" and "gruvbox", both are pretty good.
@@ -312,100 +254,6 @@ This next function is made to be able to truly clear the shell prompt with the *
   (use-package doom-modeline
     :config
       (setq doom-modeline-height 40)
-      ; (doom-modeline-mode 1)
     :hook (after-init . doom-modeline-mode))
-
-#+end_src
-
-** All-the-icons
-
-#+begin_src emacs-lisp
-
-(use-package all-the-icons)
-
-#+end_src
-
-** Rainbow-delimiters
-#+begin_src emacs-lisp
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-#+end_src
-
-** Lsp-mode
-
-#+begin_src emacs-lisp
-
-  (use-package lsp-mode
-    :init
-      (setq lsp-keymap-prefix "C-c l")
-    :config
-      (setq lsp-idle-delay 0.500)
-      (setq lsp-enable-snippet 1)
-    :hook
-      (c-mode . lsp)
-      (c++-mode . lsp)
-      (python-mode . lsp)
-      (javascript-mode . lsp)
-      (lsp-mode . lsp-enable-which-key-integration))
-
-#+end_src
-
-** Lsp-jedi 
-
-#+begin_src emacs-lisp
-
-  (add-to-list 'exec-path "/home/ms45/.local/bin/")
-  (use-package lsp-jedi)
-    ;; :config
-    ;; (with-eval-after-load "lsp-mode"
-    ;;   (add-to-list 'lsp-disabled-clients 'pyls)
-    ;;   (add-to-list 'lsp-enabled-clients 'jedi)))
-
-#+end_src
-
-** Treemacs
-
-#+begin_src emacs-lisp
-
-  (use-package treemacs)
-
-#+end_src
-
-** Pdf-tools
-
-#+begin_src emacs-lisp
-
-  (use-package pdf-tools
-    :config
-    (pdf-tools-install))
-
-#+end_src
-
-** Yasnippet
-
-#+begin_src emacs-lisp
-
-  (use-package yasnippet
-    :config
-    (yas-global-mode 1))
-
-#+end_src
-
-*** Yasnippet-snippets
-
-#+begin_src emacs-lisp
-
-  (use-package yasnippet-snippets)
-
-#+end_src
-
-** Expand-region
-
-#+begin_src emacs-lisp
-
-  (use-package expand-region
-    :bind ("C-=" . er/expand-region))
 
 #+end_src
