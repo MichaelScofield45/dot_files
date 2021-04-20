@@ -14,7 +14,10 @@ source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 # source ~/.config/p10k-robbyrussell.zsh # Uncomment to enable the Robbyrussel them from Oh-my-zsh!
 
 # Aliases for common usability.
-alias ls="ls --color"
+alias ls="ls --color=auto"
+
+# Add scripts to the PATH variable
+export PATH=$PATH:~/scripts
 
 # Setup for nnn to work and stay in working directory.
 n ()
@@ -45,7 +48,8 @@ n ()
     fi
 }
 
-bindkey -v # Enable vi mode.
+# bindkey -v # Enable vi mode.
+bindkey -e # Enable emacs mode.
 export KEYTIMEOUT=1
 
 # Basic auto/tab complete:
@@ -79,3 +83,17 @@ HISTFILE=~/.zsh_history
 autoload -U colors && colors
 
 export FZF_DEFAULT_COMMAND="fd --hidden" # Give fzf a faster command, fd instead of find. Allowing hidden files and dirs.
+export EDITOR="nvim"
+export TERM="xterm-kitty"
+
+# Enable suggestions
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Enable syntax highlighting
+source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+# Enable C-s for fwd search in shell.
+# source ~/scripts/enable_fwd_search_shell 
+
+# Add Jedi to PATH
+export PATH=$PATH:/home/ms45/.local/bin
