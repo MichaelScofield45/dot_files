@@ -46,17 +46,6 @@
 
 #+end_src
 
-
-** Autocomplete Brackets
-
-#+begin_src emacs-lisp
-
-  (electric-pair-mode 1)
-  (setq show-paren-style 'parenthesis)
-  (show-paren-mode 0) ; Disabled becaus of Rainbow-delimiters
-
-#+end_src
-
 * Functionality
 ** Ido-mode
 
@@ -83,6 +72,24 @@
   (setq backward-delete-char-untabify-method nil)
   (setq-default indent-tabs-mode nil)
   (setq-default c-basic-offset 4) ; Set C indent to 4.
+
+#+end_src
+
+** Autocomplete Brackets
+
+#+begin_src emacs-lisp
+
+  (electric-pair-mode 1)
+  (setq show-paren-style 'parenthesis)
+  (show-paren-mode t) ; Disabled becaus of Rainbow-delimiters
+
+#+end_src
+
+** Disable auto-save mode
+
+#+begin_src emacs-lisp
+
+  (auto-save-mode nil)
 
 #+end_src
 
@@ -255,5 +262,22 @@
     :config
       (setq doom-modeline-height 40)
     :hook (after-init . doom-modeline-mode))
+
+#+end_src
+
+** Yasnippet
+
+#+begin_src emacs-lisp
+
+  (use-package yasnippet
+    :config (yas-global-mode 1))
+
+#+end_src
+
+** Yasnippet-snippets
+
+#+begin_src emacs-lisp
+
+  (use-package yasnippet-snippets)
 
 #+end_src
