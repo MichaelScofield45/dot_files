@@ -1,7 +1,7 @@
 #+TITLE: Master Org Configuration
 #+AUTHOR: Pciu
 #+DATE: <2021-01-22>
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
 
 * General Appearance
 ** Getting rid of menus
