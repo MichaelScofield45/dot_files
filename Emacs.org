@@ -29,9 +29,9 @@
 
 #+begin_src emacs-lisp
 
-(column-number-mode)
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)
+  (column-number-mode)
+  ;; (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode t)
 
 #+end_src
 
@@ -90,6 +90,14 @@
 #+begin_src emacs-lisp
 
   (auto-save-mode nil)
+
+#+end_src
+
+** Disable backup-files (~)
+
+#+begin_src emacs-lisp
+
+  (setq make-backup-files nil)
 
 #+end_src
 
