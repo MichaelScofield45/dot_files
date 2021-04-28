@@ -9,15 +9,21 @@ o.hidden = true
 o.incsearch = true
 o.mouse = 'a'
 o.showmode = false
--- o.noerrorbells = true
+o.hlsearch = false
 o.undodir = '~/.config/nvim/undodir'
 o.termguicolors = true
--- o.clipboard = 'unnamedplus'
 
+-- Tabs & Indentation
+o.shiftwidth = 4
+o.tabstop = 4
+o.softtabstop = 4
 bo.expandtab = true
+bo.shiftwidth = 4
+bo.tabstop = 4
+bo.softtabstop = 4
 
 wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
 
-cmd('colorscheme spaceduck')
+cmd('colorscheme gruvbox8')

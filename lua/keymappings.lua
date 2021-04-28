@@ -8,4 +8,7 @@ vim.g.mapleader = ' '
 map('n','<Leader>l', ':Lexplore<CR>', options )
 
 -- <ESC> in terminal
-map('t','<ESC>', '<C-\\><C-n>', options )
+map('t','<ESC><ESC>', '<C-\\><C-n>', options )
+
+-- <ESC> in terminal
+map('n','<Leader>cl', ':noh<CR>', options )
