@@ -321,3 +321,12 @@
   (use-package yasnippet-snippets)
 
 #+end_src
+
+** Expand-region
+
+#+begin_src emacs-lisp
+
+  (use-package expand-region
+    :bind ("C-=" . er/expand-region))
+
+#+end_src

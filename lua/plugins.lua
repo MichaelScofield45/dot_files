@@ -35,7 +35,7 @@ return require('packer').startup(function()
   use 'tjdevries/colorbuddy.nvim'
 
   -- Material (lua colorscheme)
-  use 'marko-cerovac/material.nvim'
+  -- use 'marko-cerovac/material.nvim'
 
   -- tree-sitter
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
