@@ -109,9 +109,3 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # Add Jedi to PATH
 export PATH=$PATH:/home/ms45/.local/bin
-
-export PREFIX="/home/ms45/Software/gimp"
-export PATH="$PREFIX/bin:$PATH"
-export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"
-export ACLOCAL_FLAGS="-I $PREFIX/share/aclocal $ACLOCAL_FLAGS"
