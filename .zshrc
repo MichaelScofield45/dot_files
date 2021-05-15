@@ -1,3 +1,6 @@
+# Enable fwd-i-search in shell.
+stty -ixon
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -11,7 +14,7 @@ source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# source ~/.config/p10k-robbyrussell.zsh # Uncomment to enable the Robbyrussel them from Oh-my-zsh!
+# source ~/.config/powerlevel10k/config/p10k-robbyrussell.zsh # Uncomment to enable the Robbyrussel theme from Oh-my-zsh!
 
 # Aliases for common usability.
 alias ls="ls --color=auto"
@@ -73,6 +76,11 @@ eval "$(dircolors)"                                   # Evaluates the dircolors 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # Just adds the normal ls --color colors to autocomplete menu.
 #zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==01=02}:${(s.:.)LS_COLORS}")' # Adds colors to the complete pattern and following character.
 
+# use the vi navigation keys in menu completion
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
 
 # History in cache directory:
 HISTSIZE=10000
@@ -86,14 +94,24 @@ export FZF_DEFAULT_COMMAND="fd --hidden" # Give fzf a faster command, fd instead
 export EDITOR="nvim"
 export TERM="xterm-kitty"
 
+# Search in history functionality in vi-mode.
+
+# bindkey "/" fwd-i-search
+# bindkey "?" bck-i-search
+# bindkey "n" vi-repeat-search
+# bindkey "N" vi-rev-repeat-search
+
 # Enable suggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Enable syntax highlighting
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
-# Enable C-s for fwd search in shell.
-# source ~/scripts/enable_fwd_search_shell 
-
 # Add Jedi to PATH
 export PATH=$PATH:/home/ms45/.local/bin
+
+export PREFIX="/home/ms45/Software/gimp"
+export PATH="$PREFIX/bin:$PATH"
+export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"
+export ACLOCAL_FLAGS="-I $PREFIX/share/aclocal $ACLOCAL_FLAGS"
