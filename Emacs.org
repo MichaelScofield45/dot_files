@@ -41,7 +41,8 @@
 
   (dolist (mode '(org-mode-hook ; Disable line numbers for org-mode or other such modes.
                   term-mode-hook
-                  eshell-mode-hook))
+                  eshell-mode-hook
+                  vterm-mode-hook))
     (add-hook mode(lambda () (display-line-numbers-mode 0))))
 
 #+end_src
@@ -268,7 +269,7 @@
 
   (use-package doom-modeline
     :config
-      (setq doom-modeline-height 40)
+      (setq doom-modeline-height 25)
     :hook (after-init . doom-modeline-mode))
 
 #+end_src
@@ -328,5 +329,23 @@
 
   (use-package expand-region
     :bind ("C-=" . er/expand-region))
+
+#+end_src
+
+** Rainbow-delimiters
+
+#+begin_src emacs-lisp
+
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+
+#+end_src
+
+** Vterm
+
+#+begin_src emacs-lisp
+
+  (use-package vterm
+      :ensure t)
 
 #+end_src
