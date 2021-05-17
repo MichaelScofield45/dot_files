@@ -10,5 +10,9 @@ map('n','<Leader>l', ':Lexplore<CR>', options )
 -- <ESC> in terminal
 map('t','<ESC><ESC>', '<C-\\><C-n>', options )
 
--- <ESC> in terminal
+-- clear highlights in buffer
 map('n','<Leader>cl', ':noh<CR>', options )
+
+-- map('i','<C-Space>', 'compe#complete()', options )
+-- map('i','<CR>',      'compe#confirm('<CR>')', options )
+-- map('i','<C-e>',     'compe#close('<C-e>')', options )

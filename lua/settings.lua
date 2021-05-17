@@ -12,6 +12,7 @@ o.showmode = false
 o.hlsearch = false
 o.undodir = '~/.config/nvim/undodir'
 o.termguicolors = true
+o.completeopt = "menuone,noselect"
 
 -- Tabs & Indentation
 o.shiftwidth = 4

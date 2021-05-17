@@ -40,4 +40,13 @@ return require('packer').startup(function()
   -- tree-sitter
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
 
+  -- lsp support
+  use 'neovim/nvim-lspconfig'
+
+  -- vim-surround
+  use 'tpope/vim-surround'
+
+  -- Completion engine written in Lua.
+  use 'hrsh7th/nvim-compe'
+
 end)
