@@ -30,8 +30,8 @@
 #+begin_src emacs-lisp
 
   (column-number-mode)
-  ;; (setq display-line-numbers-type 'relative)
-  (global-display-line-numbers-mode t)
+  (setq display-line-numbers-type 'relative)
+  ;; (global-display-line-numbers-mode t)
 
 #+end_src
 
@@ -44,6 +44,19 @@
                   eshell-mode-hook
                   vterm-mode-hook))
     (add-hook mode(lambda () (display-line-numbers-mode 0))))
+
+#+end_src
+
+** Column at 80 characters
+
+#+begin_src emacs-lisp
+
+  (defun color-column ()
+      "Produces a limiting character on column 80."
+    (display-fill-column-indicator-mode 1)
+    (setq display-fill-column-indicator-column 80))
+
+  (add-hook 'prog-mode-hook 'color-column)
 
 #+end_src
 
@@ -149,6 +162,7 @@
   (use-package evil
     :init 
     (setq evil-want-C-u-scroll t) ; Allow scrolling up with ^u.
+    (setq evil-undo-system nil)
     :config
     (evil-mode 0))
 
@@ -269,7 +283,7 @@
 
   (use-package doom-modeline
     :config
-      (setq doom-modeline-height 25)
+      ;; (setq doom-modeline-height 25)
     :hook (after-init . doom-modeline-mode))
 
 #+end_src

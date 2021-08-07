@@ -13,6 +13,8 @@ o.hlsearch = false
 o.undodir = '~/.config/nvim/undodir'
 o.termguicolors = true
 o.completeopt = "menuone,noselect"
+o.shortmess = o.shortmess .. 'c'
+-- o.background = "dark"
 
 -- Tabs & Indentation
 o.shiftwidth = 4
@@ -27,4 +29,4 @@ wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
 
-cmd('colorscheme gruvbox8')
+cmd([[colorscheme gruvbox]])
