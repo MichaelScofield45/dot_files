@@ -18,6 +18,8 @@ lspconfig.clangd.setup {
 
 lspconfig.denols.setup{}
 
+lspconfig.pyright.setup{}
+
 lspconfig.gopls.setup{}
 
 -- Completion engine setup

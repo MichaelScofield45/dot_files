@@ -15,7 +15,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- lualine 
-  ---[[
+  --[[
   use { 'hoob3rt/lualine.nvim', 
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }, 
       config = function() require('lualine').setup {
@@ -31,7 +31,13 @@ return require('packer').startup(function()
   use 'rktjmp/lush.nvim'
   
   -- gruvbox, in Lua
-  use 'npxbr/gruvbox.nvim'
+  use 'ellisonleao/gruvbox.nvim'
+
+  -- moonfly, colorful lua colorscheme
+  use 'bluz71/vim-moonfly-colors'
+
+  -- Magit for neovim
+  use 'TimUntersberger/neogit'
 
   -- tree-sitter support
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
