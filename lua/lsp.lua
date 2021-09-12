@@ -16,34 +16,47 @@ lspconfig.clangd.setup {
 
 -- lspconfig.tsserver.setup{}
 
-lspconfig.denols.setup{}
+lspconfig.denols.setup{
+  capabilities = capabilities,
+}
 
-lspconfig.pyright.setup{}
+lspconfig.pyright.setup{
+  capabilities = capabilities,
+}
 
-lspconfig.gopls.setup{}
+lspconfig.gopls.setup{
+  capabilities = capabilities,
+}
 
 -- Completion engine setup
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+local cmp = require('cmp')
+  cmp.setup {
+    snippet = {
+      expand = function(args)
+        -- You must install `vim-vsnip` if you use the following as-is.
+        vim.fn['vsnip#anonymous'](args.body)
+      end
+    },
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-  };
-}
+    mapping = {
+          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+          })
+        },
+
+    -- You should specify your *installed* sources.
+    sources = {
+      { name = 'buffer' },
+      { name = 'nvim_lsp' },
+      -- { name = 'nvim_lua' },
+      { name = 'vsnip' },
+	  { name = 'neorg' }
+    },
+  }

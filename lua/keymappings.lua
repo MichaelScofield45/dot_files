@@ -17,9 +17,26 @@ map( 't','<ESC><ESC>', '<C-\\><C-n>', options )
 map( 'n','<Leader>cl', ':noh<CR>', options )
 
 -- nvim-compe
-map( 'i','<C-Space>', [[ compe#complete() ]], { silent = true, expr = true } )
-map( 'i','<CR>', [[ compe#confirm('<CR>') ]], { silent = true, expr = true } )
-map( 'i','<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true } )
+-- map( 'i','<C-Space>', [[ compe#complete() ]], { silent = true, expr = true } )
+-- map( 'i','<CR>', [[ compe#confirm('<CR>') ]], { silent = true, expr = true } )
+-- map( 'i','<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true } )
+
+-- nvim-cmp
+--[[
+local cmp = require('cmp')
+mapping = {
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-n>'] = cmp.mapping.select_next_item(),
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      })
+    }
+--]]
 
 -- vim-vsnip
 t'<Tab>'

@@ -8,7 +8,7 @@ local cmd = vim.cmd
 o.hidden = true
 o.incsearch = true
 o.mouse = 'a'
-o.showmode = true
+o.showmode = false
 o.hlsearch = false
 o.undodir = '~/.config/nvim/undodir'
 o.termguicolors = true
@@ -29,4 +29,5 @@ wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
 
-cmd([[colorscheme moonfly]])
+require('onedark').setup()
+-- cmd([[colorscheme moonfly]])

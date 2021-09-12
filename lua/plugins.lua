@@ -15,12 +15,12 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- lualine 
-  --[[
-  use { 'hoob3rt/lualine.nvim', 
+  ---[[
+  use { 'shadmansaleh/lualine.nvim', 
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }, 
       config = function() require('lualine').setup {
         options = { 
-          theme = 'gruvbox' 
+          theme = 'onedark' 
         }
       }
     end
@@ -28,13 +28,19 @@ return require('packer').startup(function()
   --]]
 
   -- lush theme engine
-  use 'rktjmp/lush.nvim'
+  -- use 'rktjmp/lush.nvim'
   
-  -- gruvbox, in Lua
-  use 'ellisonleao/gruvbox.nvim'
-
   -- moonfly, colorful lua colorscheme
-  use 'bluz71/vim-moonfly-colors'
+  -- use 'bluz71/vim-moonfly-colors'
+
+  -- gruvbox, in Lua
+  -- use 'ellisonleao/gruvbox.nvim'
+
+  -- Easy commenting
+  use 'b3nj5m1n/kommentary'
+
+  -- onedark, in Lua
+  use 'navarasu/onedark.nvim'
 
   -- Magit for neovim
   use 'TimUntersberger/neogit'
@@ -45,8 +51,13 @@ return require('packer').startup(function()
   -- lsp config support
   use 'neovim/nvim-lspconfig'
 
-  -- Completion engine written in Lua.
-  use 'hrsh7th/nvim-compe'
+  -- Better nvim-compe
+  use { 'hrsh7th/nvim-cmp' , requires = { 'hrsh7th/cmp-buffer', 
+										  'hrsh7th/cmp-nvim-lua',
+										  'hrsh7th/cmp-nvim-lsp',
+										  'hrsh7th/cmp-vsnip',
+										  'hrsh7th/cmp-path' } 
+  }
 
   -- Snippet support
   use 'hrsh7th/vim-vsnip'
@@ -77,6 +88,11 @@ return require('packer').startup(function()
                       workspaces = {
                           my_workspace = "~/neorg"
                       }
+                  }
+              },
+              ["core.norg.completion"] = { -- Set nvim-cmp for completion
+                  config = {
+                      engine = "nvim-cmp"
                   }
               }
           },
