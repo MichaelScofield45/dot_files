@@ -281,10 +281,10 @@
 
 #+begin_src emacs-lisp
 
-  (use-package doom-modeline
-    :config
-      ;; (setq doom-modeline-height 25)
-    :hook (after-init . doom-modeline-mode))
+  ;; (use-package doom-modeline
+  ;;   :config
+  ;;     ;; (setq doom-modeline-height 25)
+  ;;   :hook (after-init . doom-modeline-mode))
 
 #+end_src
 
