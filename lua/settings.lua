@@ -14,7 +14,7 @@ o.undodir = '~/.config/nvim/undodir'
 o.termguicolors = true
 o.completeopt = "menuone,noselect"
 o.shortmess = o.shortmess .. 'c'
--- o.background = "dark"
+-- o.netrw = false
 
 -- Tabs & Indentation
 o.shiftwidth = 4
@@ -29,5 +29,5 @@ wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
 
-require('onedark').setup()
--- cmd([[colorscheme moonfly]])
+require('onedark').load()
+-- require('nightfox').load(nightfox)

@@ -15,8 +15,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- lualine 
-  ---[[
-  use { 'shadmansaleh/lualine.nvim', 
+  use { 'nvim-lualine/lualine.nvim', 
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }, 
       config = function() require('lualine').setup {
         options = { 
@@ -25,22 +24,15 @@ return require('packer').startup(function()
       }
     end
   }
-  --]]
-
-  -- lush theme engine
-  -- use 'rktjmp/lush.nvim'
-  
-  -- moonfly, colorful lua colorscheme
-  -- use 'bluz71/vim-moonfly-colors'
-
-  -- gruvbox, in Lua
-  -- use 'ellisonleao/gruvbox.nvim'
 
   -- Easy commenting
   use 'b3nj5m1n/kommentary'
 
   -- onedark, in Lua
   use 'navarasu/onedark.nvim'
+
+  -- nightfox colorscheme
+  use 'EdenEast/nightfox.nvim'
 
   -- Magit for neovim
   use 'TimUntersberger/neogit'
@@ -55,22 +47,19 @@ return require('packer').startup(function()
   use { 'hrsh7th/nvim-cmp' , requires = { 'hrsh7th/cmp-buffer', 
 										  'hrsh7th/cmp-nvim-lua',
 										  'hrsh7th/cmp-nvim-lsp',
-										  'hrsh7th/cmp-vsnip',
+                                          'saadparwaiz1/cmp_luasnip',
 										  'hrsh7th/cmp-path' } 
   }
 
-  -- Snippet support
-  use 'hrsh7th/vim-vsnip'
-
-  -- Snippet integration with LSP
-  use 'hrsh7th/vim-vsnip-integ'
+  -- luasnip
+  use 'L3MON4D3/LuaSnip'
 
   -- plenar from TJ (dep. of neorg)
   use 'nvim-lua/plenary.nvim'
   
   -- neorg
   use {
-   "vhyrro/neorg",
+   "nvim-neorg/neorg",
     config = function()
       require('neorg').setup {
         -- Tell Neorg what modules to load
@@ -98,5 +87,5 @@ return require('packer').startup(function()
           },
         }
   end,
-}
+  }
 end)
