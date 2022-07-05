@@ -13,6 +13,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.rust_analyzer.setup({
+  capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
       assist = {

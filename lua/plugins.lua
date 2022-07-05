@@ -19,7 +19,7 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }, 
       config = function() require('lualine').setup {
         options = { 
-          theme = 'onedark' 
+          theme = 'gruvbox' 
         }
       }
     end
@@ -31,8 +31,8 @@ return require('packer').startup(function()
   -- onedark, in Lua
   use 'navarasu/onedark.nvim'
 
-  -- nightfox colorscheme
-  use 'EdenEast/nightfox.nvim'
+  -- gruvbox, in Lua
+  use 'ellisonleao/gruvbox.nvim'
 
   -- Magit for neovim
   use 'TimUntersberger/neogit'

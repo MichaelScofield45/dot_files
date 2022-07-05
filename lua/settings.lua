@@ -29,5 +29,5 @@ wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
 
-require('onedark').load()
--- require('nightfox').load(nightfox)
+-- require('onedark').load()
+vim.cmd([[colorscheme gruvbox]])
