@@ -38,9 +38,17 @@ end
 -- required in super-tab function
 local luasnip = require("luasnip")
 
+
 -- Completion engine setup
 local cmp = require('cmp')
   cmp.setup {
+	config = {
+		performance = {
+            debounce = 0,
+			throttle = 0,
+		},
+	},
+
     snippet = {
       expand = function(args)
 		require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -91,4 +99,11 @@ local cmp = require('cmp')
 	  { name = 'luasnip' },
 	  { name = 'neorg' }
     },
-  }
+
+}
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)

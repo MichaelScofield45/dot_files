@@ -14,6 +14,8 @@ o.undodir = '~/.config/nvim/undodir'
 o.termguicolors = true
 o.completeopt = "menuone,noselect"
 o.shortmess = o.shortmess .. 'c'
+o.laststatus = 3
+o.winbar = "%=%m %f"
 -- o.netrw = false
 
 -- Tabs & Indentation
@@ -29,5 +31,4 @@ wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
 
--- require('onedark').load()
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme kanagawa]])

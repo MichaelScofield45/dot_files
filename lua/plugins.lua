@@ -19,7 +19,7 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }, 
       config = function() require('lualine').setup {
         options = { 
-          theme = 'gruvbox' 
+          theme = 'kanagawa' 
         }
       }
     end
@@ -28,11 +28,28 @@ return require('packer').startup(function()
   -- Easy commenting
   use 'b3nj5m1n/kommentary'
 
+  -- Easy commenting
+  use {
+      'windwp/nvim-autopairs',
+      config = function() require('nvim-autopairs').setup{} end
+  }
+
+  -- Easy surrounding
+   use({
+      "kylechui/nvim-surround",
+      config = function()
+          require("nvim-surround").setup({})
+      end,
+  })
+
   -- onedark, in Lua
   use 'navarasu/onedark.nvim'
 
   -- gruvbox, in Lua
-  use 'ellisonleao/gruvbox.nvim'
+  -- use 'ellisonleao/gruvbox.nvim'
+
+  -- kanawaga colorscheme
+  use 'rebelot/kanagawa.nvim'
 
   -- Magit for neovim
   use 'TimUntersberger/neogit'
