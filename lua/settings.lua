@@ -16,6 +16,7 @@ o.completeopt = "menuone,noselect"
 o.shortmess = o.shortmess .. 'c'
 o.laststatus = 3
 o.winbar = "%=%m %f"
+o.wrap = false
 -- o.netrw = false
 
 -- Tabs & Indentation

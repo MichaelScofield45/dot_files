@@ -3,7 +3,7 @@ local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers = { 'clangd', 'pyright', 'gopls', 'denols', 'rust_analyzer' }
+local servers = { 'clangd', 'pyright', 'gopls', 'denols', 'rust_analyzer', 'zls' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
