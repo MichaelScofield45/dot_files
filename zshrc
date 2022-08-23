@@ -90,7 +90,9 @@ autoload -U colors && colors
 
 export FZF_DEFAULT_COMMAND="fd --hidden" # Give fzf a faster command, fd instead of find. Allowing hidden files and dirs.
 export EDITOR="nvim"
-export TERM="xterm-kitty"
+
+# I think this is not necessary
+# export TERM="xterm-kitty"
 
 # Add user .local/bin folder to PATH
 export PATH=$PATH:/home/ms45/.local/bin
