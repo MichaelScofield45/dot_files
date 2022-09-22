@@ -11,84 +11,57 @@ end
 
 ---------------------------------Plug-ins---------------------------------------
 return require('packer').startup(function()
-  -- Packer can manage itself
+
   use 'wbthomason/packer.nvim'
-
-  -- lualine 
-  use { 'nvim-lualine/lualine.nvim', 
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }, 
-      config = function() require('lualine').setup {
-        options = { 
-          theme = 'kanagawa' 
-        }
-      }
-    end
-  }
-
-  -- Easy commenting
   use 'b3nj5m1n/kommentary'
-
-  -- Easy commenting
   use {
       'windwp/nvim-autopairs',
       config = function() require('nvim-autopairs').setup{} end
   }
-
-  -- Easy surrounding
-   use({
+  use({
       "kylechui/nvim-surround",
       config = function()
           require("nvim-surround").setup({})
       end,
   })
-
-  -- onedark, in Lua
-  use 'navarasu/onedark.nvim'
-
-  -- gruvbox, in Lua
-  -- use 'ellisonleao/gruvbox.nvim'
-
-  -- kanawaga colorscheme
   use 'rebelot/kanagawa.nvim'
-
-  -- Magit for neovim
+  use {
+    'folke/tokyonight.nvim', 
+    config = require('tokyonight').setup({
+        style = "night"
+    })
+  }
   use 'TimUntersberger/neogit'
-
-  -- tree-sitter support
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
-
-  -- lsp config support
   use 'neovim/nvim-lspconfig'
-
-  -- Better nvim-compe
   use { 'hrsh7th/nvim-cmp' , requires = { 'hrsh7th/cmp-buffer', 
 										  'hrsh7th/cmp-nvim-lua',
 										  'hrsh7th/cmp-nvim-lsp',
                                           'saadparwaiz1/cmp_luasnip',
 										  'hrsh7th/cmp-path' } 
   }
-
-  -- luasnip
   use 'L3MON4D3/LuaSnip'
-
-  -- plenar from TJ (dep. of neorg)
   use 'nvim-lua/plenary.nvim'
-  
-  -- neorg
+  use 'ThePrimeagen/vim-be-good'
   use {
    "nvim-neorg/neorg",
     config = function()
       require('neorg').setup {
+          tag = "*",
         -- Tell Neorg what modules to load
           load = {
               ["core.defaults"] = {}, -- Load all the default modules
               ["core.keybinds"] = { -- Configure core.keybinds
                   config = {
                       default_keybinds = true, -- Generate the default keybinds
-                      neorg_leader = "<Leader>o" -- This is the default if unspecified
+                      neorg_leader = "<Leader>o", -- This is the default if unspecified
                   }
               },
-              ["core.norg.concealer"] = {}, -- Allows for use of icons
+              ["core.norg.concealer"] = {
+                  config = {
+                      folds = true,
+                  }
+              }, -- Allows for use of icons
               ["core.norg.dirman"] = { -- Manage your directories with Neorg
                   config = {
                       workspaces = {
@@ -100,7 +73,9 @@ return require('packer').startup(function()
                   config = {
                       engine = "nvim-cmp"
                   }
-              }
+              },
+              ["core.export"] = {},
+              ["core.export.markdown"] = {},
           },
         }
   end,

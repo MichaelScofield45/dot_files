@@ -8,7 +8,7 @@ map('n', '<Space>', '<NOP>', options )
 vim.g.mapleader = ' '
 
 -- Lexplore
-map( 'n','<Leader>l',  ':10Lexplore<CR>' , options )
+map( 'n','<Leader>l',  ':15Lexplore<CR>' , options )
 
 -- <ESC>(x2) in terminal mode
 map( 't','<ESC><ESC>', '<C-\\><C-n>', options )

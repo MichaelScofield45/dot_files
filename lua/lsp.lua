@@ -38,7 +38,6 @@ end
 -- required in super-tab function
 local luasnip = require("luasnip")
 
-
 -- Completion engine setup
 local cmp = require('cmp')
   cmp.setup {

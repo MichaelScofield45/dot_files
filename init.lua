@@ -1,6 +1,5 @@
 require('keymappings')
-require('plugins')
-require('settings')
 require('treesitter')
 require('lsp')
-require('myfuncs')
+require('plugins')
+require('settings')

@@ -1,21 +1,20 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Created by newuser for 5.8
-# source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # source ~/.config/powerlevel10k/config/p10k-robbyrussell.zsh # Uncomment to enable the Robbyrussel theme from Oh-my-zsh!
 
 # Aliases for common usability.
 alias ls="ls --color=auto"
-# alias hx="helix"
 
 # History
 HISTSIZE=10000
@@ -58,11 +57,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# Search in history functionality in vi-mode (while in instert mode).
-
-# bindkey '^R' history-incremental-search-backward
-# bindkey '^S' history-incremental-search-forward
-
 export KEYTIMEOUT=1
 
 # bindkey -e # Enable emacs mode.
@@ -91,13 +85,9 @@ autoload -U colors && colors
 export FZF_DEFAULT_COMMAND="fd --hidden" # Give fzf a faster command, fd instead of find. Allowing hidden files and dirs.
 export EDITOR="nvim"
 
-# I think this is not necessary
-# export TERM="xterm-kitty"
-
 # Add user .local/bin folder to PATH
 export PATH=$PATH:/home/ms45/.local/bin
 
-eval "$(zoxide init zsh)"
 
 # Enable suggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -105,4 +95,6 @@ source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Enable syntax highlighting
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
-eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+# eval "$(starship init zsh)"
