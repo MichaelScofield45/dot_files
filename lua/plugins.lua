@@ -1,36 +1,16 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-  execute 'packadd packer.nvim'
-end
-
-
 ---------------------------------Plug-ins---------------------------------------
 return require('packer').startup(function()
-
   use 'wbthomason/packer.nvim'
   use 'b3nj5m1n/kommentary'
-  use {
-      'windwp/nvim-autopairs',
-      config = function() require('nvim-autopairs').setup{} end
-  }
-  use({
-      "kylechui/nvim-surround",
-      config = function()
-          require("nvim-surround").setup({})
-      end,
-  })
-  use 'rebelot/kanagawa.nvim'
+  use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end }
+  use { "kylechui/nvim-surround", config = function() require("nvim-surround").setup() end }
+  use { 'rebelot/kanagawa.nvim', disable = true }
   use {
     'folke/tokyonight.nvim', 
     config = require('tokyonight').setup({
-        style = "night"
+      style = "night"
     })
-  }
+}
   use 'TimUntersberger/neogit'
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
   use 'neovim/nvim-lspconfig'
@@ -43,11 +23,12 @@ return require('packer').startup(function()
   use 'L3MON4D3/LuaSnip'
   use 'nvim-lua/plenary.nvim'
   use 'ThePrimeagen/vim-be-good'
+  use 'jbyuki/nabla.nvim'
   use {
    "nvim-neorg/neorg",
+    run = ":Neorg sync-parsers",
     config = function()
       require('neorg').setup {
-          tag = "*",
         -- Tell Neorg what modules to load
           load = {
               ["core.defaults"] = {}, -- Load all the default modules
@@ -59,7 +40,7 @@ return require('packer').startup(function()
               },
               ["core.norg.concealer"] = {
                   config = {
-                      folds = true,
+                      folds = false,
                   }
               }, -- Allows for use of icons
               ["core.norg.dirman"] = { -- Manage your directories with Neorg

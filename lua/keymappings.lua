@@ -10,6 +10,9 @@ vim.g.mapleader = ' '
 -- Lexplore
 map( 'n','<Leader>l',  ':15Lexplore<CR>' , options )
 
+-- Nabla
+map( 'n','<Leader>p',  ':lua require("nabla").popup()<CR>' , options )
+
 -- <ESC>(x2) in terminal mode
 map( 't','<ESC><ESC>', '<C-\\><C-n>', options )
 
