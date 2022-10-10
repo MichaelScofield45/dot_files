@@ -21,6 +21,7 @@ return require('packer').startup(function()
 										  'hrsh7th/cmp-path' } 
   }
   use 'L3MON4D3/LuaSnip'
+  use 'nvim-telescope/telescope.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'ThePrimeagen/vim-be-good'
   use 'jbyuki/nabla.nvim'
@@ -40,7 +41,7 @@ return require('packer').startup(function()
               },
               ["core.norg.concealer"] = {
                   config = {
-                      folds = false,
+					  folds = true,
                   }
               }, -- Allows for use of icons
               ["core.norg.dirman"] = { -- Manage your directories with Neorg
