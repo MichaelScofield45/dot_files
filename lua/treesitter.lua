@@ -2,7 +2,7 @@
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "norg", "cpp", "c", "javascript", "python", "lua" },
+  ensure_installed = { "norg", "cpp", "c", "javascript", "python", "lua", "zig" },
   highlight = {
     enable = true,
     custom_captures = {
