@@ -1,9 +1,9 @@
 ---------------------------------Plug-ins---------------------------------------
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
-  use 'b3nj5m1n/kommentary'
+  use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end  }
   use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end }
-  use { "kylechui/nvim-surround", config = function() require("nvim-surround").setup() end }
+  use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup() end }
   use { 'rebelot/kanagawa.nvim', disable = true }
   use {
     'folke/tokyonight.nvim', 
@@ -26,7 +26,7 @@ return require('packer').startup(function()
   use 'ThePrimeagen/vim-be-good'
   use 'jbyuki/nabla.nvim'
   use {
-   "nvim-neorg/neorg",
+   'nvim-neorg/neorg',
     run = ":Neorg sync-parsers",
     config = function()
       require('neorg').setup {

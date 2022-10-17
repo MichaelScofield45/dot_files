@@ -32,7 +32,10 @@ wo.wrap = false
 wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
+wo.foldmethod = "expr"
+wo.foldexpr = [[nvim_treesitter#foldexpr()]]
+wo.foldenable = false
 
 g.netrw_banner = 0
 
-vim.cmd([[colorscheme tokyonight]])
+cmd([[colorscheme tokyonight]])
