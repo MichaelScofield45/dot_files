@@ -10,7 +10,7 @@ return require('packer').startup(function()
     config = require('tokyonight').setup({
       style = "night"
     })
-}
+  }
   use 'TimUntersberger/neogit'
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
   use 'neovim/nvim-lspconfig'
@@ -23,7 +23,16 @@ return require('packer').startup(function()
   use 'L3MON4D3/LuaSnip'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'ThePrimeagen/vim-be-good'
+  use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = function() require('lualine').setup{
+          options = {
+              theme = "tokyonight"
+          }
+      }
+      end
+  }
   use 'jbyuki/nabla.nvim'
   use {
    'nvim-neorg/neorg',
