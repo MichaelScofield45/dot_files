@@ -27,15 +27,19 @@ bo.expandtab = true
 bo.shiftwidth = 4
 bo.tabstop = 4
 bo.softtabstop = 4
+bo.undofile = true
 
 wo.wrap = false
 wo.colorcolumn = '80'
 wo.number = true
 wo.relativenumber = true
+-- wo.cursorline = true
 wo.foldmethod = "expr"
 wo.foldexpr = [[nvim_treesitter#foldexpr()]]
 wo.foldenable = false
 
 g.netrw_banner = 0
+g.splitright = true
+g.splitbelow = false
 
-cmd([[colorscheme tokyonight]])
+cmd([[colorscheme tokyonight-night]])

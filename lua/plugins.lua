@@ -5,12 +5,7 @@ return require('packer').startup(function()
   use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end }
   use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup() end }
   use { 'rebelot/kanagawa.nvim', disable = true }
-  use {
-    'folke/tokyonight.nvim', 
-    config = require('tokyonight').setup({
-      style = "night"
-    })
-  }
+  use 'folke/tokyonight.nvim'
   use 'TimUntersberger/neogit'
   use { 'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
   use 'neovim/nvim-lspconfig'
@@ -24,16 +19,16 @@ return require('packer').startup(function()
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-lua/plenary.nvim'
   use {
-      'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-      config = function() require('lualine').setup{
-          options = {
-              theme = "tokyonight"
-          }
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function() require('lualine').setup{
+      options = {
+        theme = "tokyonight"
       }
-      end
+    }
+    end
   }
-  use 'jbyuki/nabla.nvim'
+  -- use 'jbyuki/nabla.nvim'
   use {
    'nvim-neorg/neorg',
     run = ":Neorg sync-parsers",
