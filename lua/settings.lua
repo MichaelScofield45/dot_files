@@ -42,4 +42,4 @@ g.netrw_banner = 0
 g.splitright = true
 g.splitbelow = false
 
-cmd([[colorscheme tokyonight-night]])
+-- cmd([[colorscheme tokyonight-night]])

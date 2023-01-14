@@ -14,11 +14,8 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-	opts = {
-	  theme = "night",
-	},
     config = function()
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme tokyonight-night]])
     end,
   },
   {
@@ -28,10 +25,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    config = true,
   },
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -60,6 +57,16 @@ return {
     "nvim-neorg/neorg",
     ft = "norg",
     build = ":Neorg sync-parsers",
-    config = true,
+    opts = {
+      load = {
+        ["core.defaults"] = {},
+        ["core.norg.concealer"] = {},
+        ["core.norg.completion"] = {
+          config = {
+            engine = "nvim-cmp",
+          },
+        },
+      },
+    },
   },
 }
