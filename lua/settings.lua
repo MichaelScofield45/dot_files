@@ -28,17 +28,6 @@ bo.tabstop = 4
 bo.softtabstop = 4
 bo.expandtab = true
 
-vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-  pattern = "*.lua",
-  callback = function()
-    bo.tabstop = 2
-    bo.softtabstop = 2
-    bo.shiftwidth = 2
-    bo.tabstop = 2
-    bo.softtabstop = 2
-  end
-})
-
 wo.wrap = false
 wo.colorcolumn = '80'
 wo.number = true
