@@ -3,13 +3,13 @@ local fn = vim.fn
 
 local M = {}
 
-M.compile_pandoc = function()
+M.pandoc_compile = function()
     local buffer = fn.expand("%")
     local filename = fn.expand("%:r")
     local extension = fn.expand("%:e")
     local command
     if (extension == "md") then
-        if (vim.b.pandoc_command == nil or vim.b.pandoc_command == "") then
+        if (not vim.b.pandoc_command or vim.b.pandoc_command == "") then
             command = string.format("pandoc %s -o %s.pdf", buffer, filename)
         else
             command = vim.b.pandoc_command
@@ -44,6 +44,17 @@ M.write_new_line_after = function()
     local _, line, col, _, _ = unpack(fn.getcurpos())
     api.nvim_cmd({ cmd = "normal", args = {"o"} }, {})
     fn.cursor({line, col})
+end
+
+M.indent_whole_file = function()
+    local _, line, col, _, _ = unpack(fn.getcurpos())
+    local currentIndent = fn.shiftwidth()
+    local newIndent = tonumber(fn.input(""))
+
+    vim.bo.shiftwidth = newIndent
+    api.nvim_cmd({ cmd = "normal", args = {"gg=G"} }, {})
+    fn.cursor({line, col})
+    vim.bo.shiftwidth = currentIndent
 end
 
 return M
