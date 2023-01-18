@@ -21,12 +21,12 @@ o.winbar = "%=%m %f"
 bo.undofile = true
 
 -- Tabs & Indentation
-bo.tabstop = 4
-bo.softtabstop = 4
-bo.shiftwidth = 4
-bo.tabstop = 4
-bo.softtabstop = 4
-bo.expandtab = true
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
+o.tabstop = 4
+o.softtabstop = 4
+o.expandtab = true
 
 wo.wrap = false
 wo.colorcolumn = '80'

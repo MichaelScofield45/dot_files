@@ -3,7 +3,7 @@ local fn = vim.fn
 
 local M = {}
 
-M.pandoc_compile = function()
+M.compile_pandoc = function()
     local buffer = fn.expand("%")
     local filename = fn.expand("%:r")
     local extension = fn.expand("%:e")
@@ -55,6 +55,11 @@ M.indent_whole_file = function()
     api.nvim_cmd({ cmd = "normal", args = {"gg=G"} }, {})
     fn.cursor({line, col})
     vim.bo.shiftwidth = currentIndent
+end
+
+M.set_makeprg = function()
+    local command = fn.input("Compilation command: ")
+    vim.bo.makeprg = command
 end
 
 return M
