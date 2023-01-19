@@ -29,7 +29,7 @@ o.softtabstop = 4
 o.expandtab = true
 
 wo.wrap = false
-wo.colorcolumn = '80'
+wo.colorcolumn = "80"
 wo.number = true
 wo.relativenumber = true
 wo.foldmethod = "expr"

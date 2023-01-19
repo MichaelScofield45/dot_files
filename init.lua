@@ -22,5 +22,6 @@ require("keymappings")
 require("treesitter")
 require("lsp")
 require("myfuncs")
+require("autocommands")
 require("settings")
 
