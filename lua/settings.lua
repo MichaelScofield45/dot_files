@@ -17,6 +17,7 @@ o.completeopt = "menuone,noselect"
 o.shortmess = o.shortmess .. 'c'
 o.laststatus = 3
 o.winbar = "%=%m %f"
+o.cmdheight = 0
 
 bo.undofile = true
 
