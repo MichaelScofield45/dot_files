@@ -1,31 +1,37 @@
 return {
     {
         "numToStr/Comment.nvim",
-        config = true,
+        config = true
     },
     {
         "windwp/nvim-autopairs",
-        config = true,
+        opts = {
+            disable_filetype = { "fennel" }
+        }
     },
     {
         "kylechui/nvim-surround",
-        config = true,
+        config = true
     },
     {
         "folke/tokyonight.nvim",
         lazy = false,
         config = function()
             vim.cmd([[colorscheme tokyonight-night]])
-        end,
+        end
+    },
+    {
+        "folke/zen-mode.nvim",
+        config = true
     },
     {
         "TimUntersberger/neogit",
-        cmd = "Neogit",
+        cmd = "Neogit"
     },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = true,
+        config = true
     },
     {
         "neovim/nvim-lspconfig",
@@ -37,24 +43,24 @@ return {
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-path",
-        },
+            "hrsh7th/cmp-path"
+        }
     },
     "L3MON4D3/LuaSnip",
     {
         "nvim-telescope/telescope.nvim",
-        lazy = true,
+        lazy = true
     },
     {
         "nvim-lua/plenary.nvim",
-        lazy = true,
+        lazy = true
     },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
         opts = {
-            theme = "tokyonight",
-        },
+            theme = "tokyonight"
+        }
     },
     {
         "nvim-neorg/neorg",
@@ -66,13 +72,13 @@ return {
                 ["core.norg.concealer"] = {},
                 ["core.norg.completion"] = {
                     config = {
-                        engine = "nvim-cmp",
-                    },
-                },
-            },
+                        engine = "nvim-cmp"
+                    }
+                }
+            }
         },
         dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-    },
+            "nvim-lua/plenary.nvim"
+        }
+    }
 }
