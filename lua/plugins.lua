@@ -22,7 +22,20 @@ return {
     },
     {
         "folke/zen-mode.nvim",
-        config = true
+        opts = {
+            window = {
+                width = 90,
+                options = {
+                    number = false,
+                    colorcolumn = "0"
+                }
+            },
+            plugins = {
+                options = {
+                    cmdheight = 1
+                }
+            }
+        }
     },
     {
         "TimUntersberger/neogit",
