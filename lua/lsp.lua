@@ -3,7 +3,7 @@ local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local servers = { "clangd", "pyright", "gopls", "denols", "rust_analyzer", "zls", "sumneko_lua" }
+local servers = { "clangd", "pyright", "gopls", "tsserver", "rust_analyzer", "zls", "lua_ls" }
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
@@ -12,7 +12,7 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
             runtime = {
