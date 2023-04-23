@@ -12,6 +12,10 @@ for _, lsp in ipairs(servers) do
     }
 end
 
+vim.keymap.set("n", "gd", function ()
+	vim.lsp.buf.definition()
+end)
+
 require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {

@@ -17,8 +17,15 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,
         config = function()
-            vim.cmd([[colorscheme tokyonight-night]])
+            vim.cmd.colorscheme("tokyonight-night")
         end
+    },
+    {
+        "NTBBloodbath/sweetie.nvim",
+        lazy = false,
+        -- config = function()
+        --     vim.cmd.colorscheme("sweetie")
+        -- end
     },
     {
         "folke/zen-mode.nvim",
@@ -71,6 +78,7 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
+        -- lazy = true,
         dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
         opts = {
             theme = "tokyonight"
@@ -84,6 +92,13 @@ return {
             load = {
                 ["core.defaults"] = {},
                 ["core.norg.concealer"] = {},
+                ["core.norg.dirman"] = {
+                    config = {
+                        workspaces = {
+                            semester = "~/Documents/Feb-Jun2023"
+                        }
+                    }
+                },
                 ["core.norg.completion"] = {
                     config = {
                         engine = "nvim-cmp"

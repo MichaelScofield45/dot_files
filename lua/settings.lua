@@ -35,8 +35,10 @@ wo.relativenumber = true
 wo.foldmethod = "expr"
 wo.foldexpr = [[nvim_treesitter#foldexpr()]]
 wo.foldenable = false
+wo.conceallevel = 3
 
 g.netrw_banner = 0
 g.splitright = true
 g.splitbelow = false
+g.autochdir = true
 
