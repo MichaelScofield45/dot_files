@@ -91,15 +91,15 @@ return {
         opts = {
             load = {
                 ["core.defaults"] = {},
-                ["core.norg.concealer"] = {},
-                ["core.norg.dirman"] = {
+                ["core.concealer"] = {},
+                ["core.dirman"] = {
                     config = {
                         workspaces = {
                             semester = "~/Documents/Feb-Jun2023"
                         }
                     }
                 },
-                ["core.norg.completion"] = {
+                ["core.completion"] = {
                     config = {
                         engine = "nvim-cmp"
                     }
