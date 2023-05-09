@@ -5,9 +5,6 @@ return {
     },
     {
         "windwp/nvim-autopairs",
-        opts = {
-            disable_filetype = { "fennel" }
-        }
     },
     {
         "kylechui/nvim-surround",
@@ -19,13 +16,6 @@ return {
         config = function()
             vim.cmd.colorscheme("tokyonight-night")
         end
-    },
-    {
-        "NTBBloodbath/sweetie.nvim",
-        lazy = false,
-        -- config = function()
-        --     vim.cmd.colorscheme("sweetie")
-        -- end
     },
     {
         "folke/zen-mode.nvim",
@@ -44,10 +34,6 @@ return {
                 }
             }
         }
-    },
-    {
-        "TimUntersberger/neogit",
-        cmd = "Neogit"
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -109,5 +95,9 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim"
         }
+    },
+    {
+        "kaarmu/typst.vim",
+        ft = "typst"
     }
 }
