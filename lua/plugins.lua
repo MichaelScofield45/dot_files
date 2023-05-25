@@ -1,14 +1,19 @@
 return {
     {
-        "numToStr/Comment.nvim",
-        config = true
+      "folke/which-key.nvim",
+      config = function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 500
+        require("which-key").setup({})
+      end
     },
     {
-        "windwp/nvim-autopairs",
-    },
-    {
-        "kylechui/nvim-surround",
-        config = true
+        "echasnovski/mini.nvim",
+        config = function()
+            require("mini.comment").setup({})
+            require("mini.pairs").setup({})
+            require("mini.surround").setup({})
+        end
     },
     {
         "folke/tokyonight.nvim",
@@ -47,16 +52,16 @@ return {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-path"
         }
     },
-    "L3MON4D3/LuaSnip",
+    {
+      "L3MON4D3/LuaSnip",
+    },
     {
         "nvim-telescope/telescope.nvim",
-        lazy = true
+        cmd = "Telescope"
     },
     {
         "nvim-lua/plenary.nvim",
@@ -73,6 +78,7 @@ return {
     {
         "nvim-neorg/neorg",
         ft = "norg",
+        cmd = "Neorg",
         build = ":Neorg sync-parsers",
         opts = {
             load = {

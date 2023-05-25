@@ -1,16 +1,5 @@
 local options = { noremap = true, silent = true }
 
--- Lexplore
-vim.keymap.set( "n","<Leader>l",  ":15Lexplore<CR>" , options )
-
--- Telescope
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<Leader>ff", builtin.find_files, options)
-vim.keymap.set("n", "<Leader>fg", builtin.live_grep, options)
-vim.keymap.set("n", "<Leader>fb", builtin.buffers, options)
-vim.keymap.set("n", "<Leader>fs", builtin.current_buffer_fuzzy_find, options)
-vim.keymap.set("n", "<Leader>fh", builtin.help_tags, options)
-
 -- My Stuff
 local myfuncs = require("myfuncs")
 vim.keymap.set("n", "<leader>[", myfuncs.write_new_line_before)
@@ -21,6 +10,18 @@ vim.keymap.set("n", "<leader>cc", function ()
     vim.api.nvim_cmd({ cmd = "make" }, {})
 end)
 
--- vim.keymap.set("i", "<C-o>-", "—")
--- vim.keymap.set("i", "<C-o>>", "»")
+local wk = require("which-key")
+
+wk.register({
+    ["<leader>f"] = {
+        name = "file",
+        f = { "<cmd>Telescope find_files<cr>", "Find File" },
+        g = { "<cmd>Telescope live_grep<cr>", "Grep current file" },
+        b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
+        s = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find current buffer" },
+        h = { "<cmd>Telescope help_tags<cr>", "Find en neovim manual" },
+    },
+    ["<leader>["] = { function() myfuncs.write_new_line_before() end, "Add newline on the line before" },
+    ["<leader>]"] = { function() myfuncs.write_new_line_after() end, "Add newline on the line after" },
+})
 
