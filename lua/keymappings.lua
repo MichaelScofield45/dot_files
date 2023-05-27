@@ -1,5 +1,3 @@
-local options = { noremap = true, silent = true }
-
 -- My Stuff
 local myfuncs = require("myfuncs")
 vim.keymap.set("n", "<leader>[", myfuncs.write_new_line_before)
@@ -23,5 +21,6 @@ wk.register({
     },
     ["<leader>["] = { function() myfuncs.write_new_line_before() end, "Add newline on the line before" },
     ["<leader>]"] = { function() myfuncs.write_new_line_after() end, "Add newline on the line after" },
+    gd = { function() vim.lsp.buf.definition() end, "Go to definition (lsp)" }
 })
 

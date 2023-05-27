@@ -11,6 +11,7 @@ return {
         "echasnovski/mini.nvim",
         config = function()
             require("mini.comment").setup({})
+            require("mini.completion").setup({})
             require("mini.pairs").setup({})
             require("mini.surround").setup({})
         end
@@ -49,14 +50,6 @@ return {
         "neovim/nvim-lspconfig",
     },
     {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lsp",
-            "saadparwaiz1/cmp_luasnip",
-        }
-    },
-    {
       "L3MON4D3/LuaSnip",
     },
     {
@@ -65,11 +58,9 @@ return {
     },
     {
         "nvim-lua/plenary.nvim",
-        lazy = true
     },
     {
         "nvim-lualine/lualine.nvim",
-        -- lazy = true,
         dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
         opts = {
             theme = "tokyonight"
@@ -93,7 +84,7 @@ return {
                 },
                 ["core.completion"] = {
                     config = {
-                        engine = "nvim-cmp"
+                        engine = nil
                     }
                 }
             }

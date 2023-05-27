@@ -1,7 +1,7 @@
 local api = vim.api
 
 api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.norg", "*.md", "*.typ", "*.myfile" },
+  pattern = { "*.norg", "*.md", "*.typ" },
   callback = function()
     vim.bo.textwidth = 80
     local new_fo, n_subs = string.gsub(vim.bo.formatoptions, "l", "t")
