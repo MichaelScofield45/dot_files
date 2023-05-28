@@ -19,8 +19,13 @@ return {
     {
         "folke/tokyonight.nvim",
         lazy = false,
+        priority = 1000,
         config = function()
-            vim.cmd.colorscheme("tokyonight-night")
+            require("tokyonight").setup({
+                style = "night",
+                terminal_colors = true
+            })
+            vim.cmd([[colorscheme tokyonight]])
         end
     },
     {
@@ -80,11 +85,6 @@ return {
                         workspaces = {
                             semester = "~/Documents/Feb-Jun2023"
                         }
-                    }
-                },
-                ["core.completion"] = {
-                    config = {
-                        engine = nil
                     }
                 }
             }
