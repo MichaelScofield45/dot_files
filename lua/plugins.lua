@@ -55,9 +55,6 @@ return {
         "neovim/nvim-lspconfig",
     },
     {
-      "L3MON4D3/LuaSnip",
-    },
-    {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope"
     },
