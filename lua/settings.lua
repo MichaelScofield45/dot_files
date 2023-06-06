@@ -30,6 +30,7 @@ o.expandtab = true
 
 wo.wrap = false
 wo.colorcolumn = "80"
+wo.cursorline = true
 wo.number = true
 wo.relativenumber = true
 wo.foldmethod = "expr"
