@@ -9,6 +9,7 @@ return {
     },
     {
         "echasnovski/mini.nvim",
+        version = false,
         config = function()
             require("mini.comment").setup({})
             require("mini.completion").setup({})
@@ -63,9 +64,11 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
+        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
         opts = {
-            theme = "tokyonight"
+            options = {
+                theme = "tokyonight",
+            }
         }
     },
     {
@@ -86,9 +89,6 @@ return {
                 }
             }
         },
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        }
     },
     {
         "kaarmu/typst.vim",
