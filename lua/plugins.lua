@@ -19,7 +19,7 @@ return {
     },
     {
         "folke/tokyonight.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
             require("tokyonight").setup({
@@ -67,7 +67,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
         opts = {
             options = {
-                theme = "tokyonight",
+                theme = "kanagawa",
             }
         }
     },
@@ -93,5 +93,32 @@ return {
     {
         "kaarmu/typst.vim",
         ft = "typst"
+    },
+    {
+        "ramojus/mellifluous.nvim",
+        lazy = true,
+        priority = 1000,
+        config = function()
+            require("mellifluous").setup({})
+            vim.cmd([[colorscheme mellifluous]])
+        end
+    },
+    {
+        "ribru17/bamboo.nvim",
+        lazy = true,
+        priority = 1000,
+        config = function()
+            require("bamboo").setup({})
+            vim.cmd([[colorscheme bamboo]])
+        end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        -- lazy = true,
+        priority = 1000,
+        config = function()
+            require("kanagawa").setup({})
+            vim.cmd([[colorscheme kanagawa]])
+        end
     }
 }
