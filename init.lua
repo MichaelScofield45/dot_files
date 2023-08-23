@@ -25,4 +25,4 @@ require("lsp")
 require("myfuncs")
 require("autocommands")
 require("settings")
-
+require("snippets")
