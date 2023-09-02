@@ -14,18 +14,18 @@ return {
         "L3MON4D3/LuaSnip",
         version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
         -- build = "make install_jsregexp"
-        -- config = function()
-        --     local ls = require("luasnip")
-        --     vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-        --     vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-        --     vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
-        --
-        --     vim.keymap.set({"i", "s"}, "<C-E>", function()
-        --         if ls.choice_active() then
-        --             ls.change_choice(1)
-        --         end
-        --     end, {silent = true})
-        -- end;
+        config = function()
+            local ls = require("luasnip")
+            vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+            vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+            vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+            vim.keymap.set({"i", "s"}, "<C-E>", function()
+                if ls.choice_active() then
+                    ls.change_choice(1)
+                end
+            end, {silent = true})
+        end;
     },
     {
         "hrsh7th/nvim-cmp",
@@ -44,13 +44,13 @@ return {
                         require('luasnip').lsp_expand(args.body)
                     end
                 },
-                -- mapping = cmp.mapping.preset.insert({
-                --     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                --     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                --     ['<C-Space>'] = cmp.mapping.complete(),
-                --     ['<C-e>'] = cmp.mapping.abort(),
-                --     ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                -- }),
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },

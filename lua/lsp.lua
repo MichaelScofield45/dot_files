@@ -5,7 +5,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local servers = {
     "clangd",
-    "pyright",
+    -- "pyright",
     "zls",
 }
 
