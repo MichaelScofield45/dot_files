@@ -4,7 +4,6 @@ return {
         version = false,
         config = function()
             require("mini.comment").setup({})
-            -- require("mini.completion").setup({})
             require("mini.pairs").setup({})
             require("mini.surround").setup({})
             require("mini.ai").setup({})
@@ -54,6 +53,7 @@ return {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
+                    { name = 'neorg' },
                 }, {
                     { name = 'buffer' },
                 })
@@ -62,13 +62,22 @@ return {
     },
     {
         "folke/tokyonight.nvim",
-        priority = 1000,
+        lazy = true,
+        -- priority = 1000,
         config = function()
             require("tokyonight").setup({
                 style = "night",
                 terminal_colors = true
             })
             vim.cmd([[colorscheme tokyonight]])
+        end
+    },
+    {
+        "catppuccin/nvim",
+        priority = 1000,
+        config = function()
+            require("tokyonight").setup({})
+            vim.cmd([[colorscheme catppuccin]])
         end
     },
     {
@@ -109,7 +118,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
         opts = {
             options = {
-                theme = "tokyonight",
+                theme = "catppuccin",
             }
         }
     },
@@ -129,7 +138,12 @@ return {
                             summer = "~/Documents/EstudioVerano"
                         }
                     }
-                }
+                },
+                ["core.completion"] = {
+                    config = {
+                        engine = "nvim-cmp",
+                    },
+                },
             }
         },
     },
