@@ -3,82 +3,23 @@ return {
         "echasnovski/mini.nvim",
         version = false,
         config = function()
-            require("mini.comment").setup({})
-            require("mini.pairs").setup({})
-            require("mini.surround").setup({})
-            require("mini.ai").setup({})
-        end
-    },
-    {
-        "L3MON4D3/LuaSnip",
-        version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- build = "make install_jsregexp"
-        config = function()
-            local ls = require("luasnip")
-            vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-            vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-            vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
-
-            vim.keymap.set({"i", "s"}, "<C-E>", function()
-                if ls.choice_active() then
-                    ls.change_choice(1)
-                end
-            end, {silent = true})
-        end;
-    },
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "saadparwaiz1/cmp_luasnip",
-        },
-        config = function()
-            local cmp = require("cmp")
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'luasnip' },
-                    { name = 'neorg' },
-                }, {
-                    { name = 'buffer' },
-                })
+            require("mini.align").setup()
+            require("mini.comment").setup()
+            require("mini.completion").setup()
+            require("mini.pairs").setup()
+            require("mini.pick").setup()
+            require("mini.surround").setup()
+            require("mini.ai").setup()
+            require("mini.statusline").setup()
+            require("mini.base16").setup({
+                palette = require("mini.base16").mini_palette('#112641', '#e2e98f', 75),
+                use_cterm = true
             })
-        end,
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = true,
-        -- priority = 1000,
-        config = function()
-            require("tokyonight").setup({
-                style = "night",
-                terminal_colors = true
-            })
-            vim.cmd([[colorscheme tokyonight]])
         end
     },
     {
-        "catppuccin/nvim",
-        priority = 1000,
-        config = function()
-            require("tokyonight").setup({})
-            vim.cmd([[colorscheme catppuccin]])
-        end
+        "nvim-tree/nvim-web-devicons",
+        lazy = true
     },
     {
         "folke/zen-mode.nvim",
@@ -107,20 +48,7 @@ return {
         "neovim/nvim-lspconfig",
     },
     {
-        "nvim-telescope/telescope.nvim",
-        cmd = "Telescope"
-    },
-    {
         "nvim-lua/plenary.nvim",
-    },
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-        opts = {
-            options = {
-                theme = "catppuccin",
-            }
-        }
     },
     {
         "nvim-neorg/neorg",
