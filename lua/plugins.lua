@@ -18,6 +18,14 @@ return {
         end
     },
     {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup({
+                signcolumn = false
+            })
+        end
+    },
+    {
         "nvim-tree/nvim-web-devicons",
         lazy = true
     },
