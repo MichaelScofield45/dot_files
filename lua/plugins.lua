@@ -3,18 +3,21 @@ local now = MiniDeps.now
 local later = MiniDeps.later
 
 add("echasnovski/mini.nvim")
-require("mini.align").setup()
-require("mini.comment").setup()
-require("mini.completion").setup()
-require("mini.pairs").setup()
-require("mini.pick").setup()
-require("mini.surround").setup()
-require("mini.ai").setup()
-require("mini.statusline").setup()
-require("mini.base16").setup({
-    palette = require("mini.base16").mini_palette('#112641', '#e2e98f', 75),
-    use_cterm = true
-})
+now(function()
+    require("mini.base16").setup({
+        palette = require("mini.base16").mini_palette('#112641', '#e2e98f', 75),
+        use_cterm = true
+    })
+end)
+now(function() require("mini.statusline").setup() end)
+
+later(function() require("mini.align").setup() end)
+later(function() require("mini.comment").setup() end)
+later(function() require("mini.completion").setup() end)
+later(function() require("mini.pairs").setup() end)
+later(function() require("mini.pick").setup() end)
+later(function() require("mini.surround").setup() end)
+later(function() require("mini.ai").setup() end)
 
 add({
     source = "nvim-treesitter/nvim-treesitter",
@@ -24,11 +27,14 @@ add({
 add("neovim/nvim-lspconfig")
 
 add("lewis6991/gitsigns.nvim")
-require("gitsigns").setup({
-    colorcolumn = false
-})
+later(function()
+    require("gitsigns").setup({
+        signcolumn = false
+    })
+end)
 
 add("nvim-tree/nvim-web-devicons")
+-- require("nvim-web-devicons").setup()
 
 add("kaarmu/typst.vim")
 
