@@ -1,3 +1,10 @@
+local add = MiniDeps.add
+local later = MiniDeps.later
+
+
+later(function()
+    add("neovim/nvim-lspconfig")
+
 local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -28,3 +35,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+end)

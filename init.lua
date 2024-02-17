@@ -22,9 +22,8 @@ vim.g.maplocalleader = " "
 vim.loader.enable()
 
 require("keymappings")
--- require("treesitter")
--- require("lsp")
--- require("myfuncs")
--- require("autocommands")
+require("myfuncs")
+require("autocommands")
 require("settings")
 require("plugins")
+require("lsp")
