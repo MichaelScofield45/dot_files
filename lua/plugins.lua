@@ -62,14 +62,21 @@ later(function()
     })
 end)
 
-later(function() require("mini.align").setup() end)
-later(function() require("mini.comment").setup() end)
+later(function() require("mini.animate").setup() end)
 later(function() require("mini.completion").setup() end)
 later(function() require("mini.pairs").setup() end)
 later(function() require("mini.pick").setup() end)
 later(function() require("mini.surround").setup() end)
-later(function() require("mini.splitjoin").setup() end)
+later(function() require("mini.comment").setup() end)
+later(function() require("mini.align").setup() end)
 later(function() require("mini.ai").setup() end)
+later(function() require("mini.splitjoin").setup() end)
+
+later(function()
+    add({
+        source = "folke/zen-mode.nvim",
+    })
+end)
 
 later(function()
     add({
