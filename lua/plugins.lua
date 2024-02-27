@@ -36,7 +36,12 @@ return {
     {
         "echasnovski/mini.ai",
         config = true,
-        priority = 10
+        keys = {
+            { "d" },
+            { "c" },
+            { "y" },
+            { "s" }
+        }
     },
     {
         "echasnovski/mini.align",
@@ -66,12 +71,18 @@ return {
     {
         "echasnovski/mini.pairs",
         config = true,
-        priority = 10
+        keys = {
+            { "(", mode = "i" },
+            { "[", mode = "i" },
+            { "{", mode = "i" },
+            { "\"", mode = "i" },
+            { "'", mode = "i" }
+        }
     },
     {
         "echasnovski/mini.completion",
         config = true,
-        priority = 10
+        event = "VeryLazy"
     },
 
     {
@@ -86,6 +97,7 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        event = "VeryLazy",
         build = function() vim.cmd("TSUpdate") end,
         config = function()
             require('nvim-treesitter.configs').setup {
