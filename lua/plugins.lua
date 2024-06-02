@@ -1,32 +1,37 @@
+local handle = io.popen("readlink $(which luajit)")
+local result = handle:read()
+local luajit_include_path = "--with-lua-include=" .. string.gsub(result, "bin/luajit", "include/luajit-2.1")
+handle:close()
+
 return {
-    {
-        "echasnovski/mini.base16",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("mini.base16").setup({
-                palette = {
-                    base00 = "#151515",
-                    base01 = "#202020",
-                    base02 = "#303030",
-                    base03 = "#505050",
-                    base04 = "#B0B0B0",
-                    base05 = "#D0D0D0",
-                    base06 = "#E0E0E0",
-                    base07 = "#F5F5F5",
-                    base08 = "#AC4142",
-                    base09 = "#D28445",
-                    base0A = "#F4BF75",
-                    base0B = "#90A959",
-                    base0C = "#75B5AA",
-                    base0D = "#6A9FB5",
-                    base0E = "#AA759F",
-                    base0F = "#8F5536"
-                },
-                use_cterm = true
-            })
-        end
-    },
+    -- {
+    --     "echasnovski/mini.base16",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require("mini.base16").setup({
+    --             palette = {
+    --                 base00 = "#151515",
+    --                 base01 = "#202020",
+    --                 base02 = "#303030",
+    --                 base03 = "#505050",
+    --                 base04 = "#B0B0B0",
+    --                 base05 = "#D0D0D0",
+    --                 base06 = "#E0E0E0",
+    --                 base07 = "#F5F5F5",
+    --                 base08 = "#AC4142",
+    --                 base09 = "#D28445",
+    --                 base0A = "#F4BF75",
+    --                 base0B = "#90A959",
+    --                 base0C = "#75B5AA",
+    --                 base0D = "#6A9FB5",
+    --                 base0E = "#AA759F",
+    --                 base0F = "#8F5536"
+    --             },
+    --             use_cterm = true
+    --         })
+    --     end
+    -- },
     {
         "echasnovski/mini.statusline",
         lazy = false,
@@ -36,27 +41,36 @@ return {
     {
         "echasnovski/mini.ai",
         config = true,
-        keys = {
-            { "d" },
-            { "c" },
-            { "y" },
-            { "s" }
-        }
+        event = "VeryLazy"
+    },
+    {
+        "echasnovski/mini.jump",
+        config = true,
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.align",
         config = true,
-        keys = "ga"
+        keys = {
+            { "ga" },
+            { "ga", mode = "v" }
+        }
     },
-    {
-        "echasnovski/mini.comment",
-        config = true,
-        keys = "gc"
-    },
+    -- {
+    --     "echasnovski/mini.comment",
+    --     config = true,
+    --     keys = {
+    --         { "gc" },
+    --         { "gc", mode = "v"}
+    --     }
+    -- },
     {
         "echasnovski/mini.surround",
         config = true,
-        keys = "s"
+        keys = {
+            { "s" },
+            { "s", mode = "v" }
+        }
     },
     {
         "echasnovski/mini.pick",
@@ -71,13 +85,7 @@ return {
     {
         "echasnovski/mini.pairs",
         config = true,
-        keys = {
-            { "(", mode = "i" },
-            { "[", mode = "i" },
-            { "{", mode = "i" },
-            { "\"", mode = "i" },
-            { "'", mode = "i" }
-        }
+        event = "InsertEnter"
     },
     {
         "echasnovski/mini.completion",
@@ -97,12 +105,11 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        event = "VeryLazy",
+        -- event = "VeryLazy",
         build = function() vim.cmd("TSUpdate") end,
         config = function()
             require('nvim-treesitter.configs').setup {
                 ensure_installed = {
-                    "norg",
                     "cpp",
                     "c",
                     "javascript",
@@ -131,9 +138,16 @@ return {
         cmd = "ZenMode"
     },
     {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        opts = {
+            luarocks_build_args = {luajit_include_path}
+        }
+    },
+    {
         "nvim-neorg/neorg",
-        build = function() vim.cmd("Neorg sync-parsers") end,
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = {"luarocks.nvim"},
+        version = "*",
         cmd = "Neorg",
         ft = "norg",
         config = function()
@@ -153,6 +167,6 @@ return {
                 }
             })
         end
-    }
-
+    },
+    require("lsp"),
 }
