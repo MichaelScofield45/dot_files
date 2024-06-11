@@ -4,34 +4,6 @@ local luajit_include_path = "--with-lua-include=" .. string.gsub(result, "bin/lu
 handle:close()
 
 return {
-    -- {
-    --     "echasnovski/mini.base16",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("mini.base16").setup({
-    --             palette = {
-    --                 base00 = "#151515",
-    --                 base01 = "#202020",
-    --                 base02 = "#303030",
-    --                 base03 = "#505050",
-    --                 base04 = "#B0B0B0",
-    --                 base05 = "#D0D0D0",
-    --                 base06 = "#E0E0E0",
-    --                 base07 = "#F5F5F5",
-    --                 base08 = "#AC4142",
-    --                 base09 = "#D28445",
-    --                 base0A = "#F4BF75",
-    --                 base0B = "#90A959",
-    --                 base0C = "#75B5AA",
-    --                 base0D = "#6A9FB5",
-    --                 base0E = "#AA759F",
-    --                 base0F = "#8F5536"
-    --             },
-    --             use_cterm = true
-    --         })
-    --     end
-    -- },
     {
         "echasnovski/mini.statusline",
         lazy = false,
@@ -51,41 +23,27 @@ return {
     {
         "echasnovski/mini.align",
         config = true,
-        keys = {
-            { "ga" },
-            { "ga", mode = "v" }
-        }
+        event = "VeryLazy",
     },
-    -- {
-    --     "echasnovski/mini.comment",
-    --     config = true,
-    --     keys = {
-    --         { "gc" },
-    --         { "gc", mode = "v"}
-    --     }
-    -- },
     {
         "echasnovski/mini.surround",
         config = true,
-        keys = {
-            { "s" },
-            { "s", mode = "v" }
-        }
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.pick",
         config = true,
         keys = {
-            { "<leader>ff", "<cmd>Pick files<cr>" },
-            { "<leader>fg", "<cmd>Pick grep_live<cr>" },
-            { "<leader>fb", "<cmd>Pick buffers<cr>" },
-            { "<leader>fh", "<cmd>Pick help<cr>" }
-        }
+            {'<leader>ff', '<cmd>Pick files<cr>'},
+            {'<leader>fb', '<cmd>Pick buffers<cr>'},
+            {'<leader>fh', '<cmd>Pick help<cr>'},
+            {'<leader>fg', '<cmd>Pick grep_live<cr>'},
+        },
     },
     {
         "echasnovski/mini.pairs",
         config = true,
-        event = "InsertEnter"
+        event = "VeryLazy",
     },
     {
         "echasnovski/mini.completion",
@@ -104,8 +62,16 @@ return {
         lazy = true
     },
     {
+        "benlubas/molten-nvim",
+        version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+        build = ":UpdateRemotePlugins",
+        init = function()
+            -- this is an example, not a default. Please see the readme for more configuration options
+            vim.g.molten_output_win_max_height = 12
+        end,
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
-        -- event = "VeryLazy",
         build = function() vim.cmd("TSUpdate") end,
         config = function()
             require('nvim-treesitter.configs').setup {
@@ -168,5 +134,6 @@ return {
             })
         end
     },
+
     require("lsp"),
 }
