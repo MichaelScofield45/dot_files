@@ -1,26 +1,44 @@
-vim.loader.enable()
+local rocks_config = {
+    rocks_path = vim.env.HOME .. "/.local/share/nvim/rocks",
+}
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+vim.g.rocks_nvim = rocks_config
 
-vim.keymap.set("n", "<Space>", "<NOP>", {silent = true, noremap = true} )
+local luarocks_path = {
+    vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?.lua"),
+    vim.fs.joinpath(rocks_config.rocks_path, "share", "lua", "5.1", "?", "init.lua"),
+}
+package.path = package.path .. ";" .. table.concat(luarocks_path, ";")
+
+local luarocks_cpath = {
+    vim.fs.joinpath(rocks_config.rocks_path, "lib", "lua", "5.1", "?.so"),
+    vim.fs.joinpath(rocks_config.rocks_path, "lib64", "lua", "5.1", "?.so"),
+}
+package.cpath = package.cpath .. ";" .. table.concat(luarocks_cpath, ";")
+
+vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "*", "*"))
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
-require("lazy").setup("plugins", opts)
 
 require("settings")
 require("keymappings")
 require("myfuncs")
 require("autocommands")
--- require("lsp")
+require("lsp")
+
+vim.cmd.colorscheme("nightfox")
+
+require("mini.ai").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup()
+require("mini.splitjoin").setup()
+require("mini.jump").setup()
+require("mini.completion").setup()
+
+require("mini.pick").setup()
+vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<cr>", {})
+vim.keymap.set("n", "<leader>fb", "<cmd>Pick buffers<cr>", {})
+vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<cr>", {})
+vim.keymap.set("n", "<leader>fg", "<cmd>Pick live_grep<cr>", {})
+
+require("mini.statusline").setup()
