@@ -1,8 +1,10 @@
-local api = vim.api
-
-api.nvim_create_autocmd("FileType", {
-  pattern = { "neorg", "markdown", "typst" },
+vim.api.nvim_create_augroup("ProseWriting", {})
+vim.api.nvim_create_autocmd("FileType", {
+  group = "ProseWriting",
+  pattern = { "norg", "markdown", "typst" },
   callback = function()
-      vim.bo.formatoptions = "jqcna"
-  end
+    vim.bo.textwidth = 80
+    vim.bo.formatoptions = "jcroqa"
+    vim.keymap.set('n', '<leader>fp', 'gwip', {buffer = 0})
+  end,
 })
