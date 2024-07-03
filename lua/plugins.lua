@@ -4,7 +4,6 @@ now(function()
     vim.o.termguicolors = true
     vim.cmd.colorscheme("randomhue")
 end)
-
 now(function() require("mini.statusline").setup() end)
 
 later(function() require("mini.ai").setup() end)
@@ -55,7 +54,7 @@ now(function()
 end)
 
     
-
+-- TODO: do something about neorg
     -- {
     --     "nvim-neorg/neorg",
     --     build = function() vim.cmd("Neorg sync-parsers") end,
