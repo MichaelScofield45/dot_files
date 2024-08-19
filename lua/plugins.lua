@@ -1,33 +1,5 @@
 return {
     {
-        "echasnovski/mini.base16",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("mini.base16").setup({
-                palette = {
-                    base00 = "#151515",
-                    base01 = "#202020",
-                    base02 = "#303030",
-                    base03 = "#505050",
-                    base04 = "#B0B0B0",
-                    base05 = "#D0D0D0",
-                    base06 = "#E0E0E0",
-                    base07 = "#F5F5F5",
-                    base08 = "#AC4142",
-                    base09 = "#D28445",
-                    base0A = "#F4BF75",
-                    base0B = "#90A959",
-                    base0C = "#75B5AA",
-                    base0D = "#6A9FB5",
-                    base0E = "#AA759F",
-                    base0F = "#8F5536"
-                },
-                use_cterm = true
-            })
-        end
-    },
-    {
         "echasnovski/mini.statusline",
         lazy = false,
         priority = 900,
@@ -36,22 +8,22 @@ return {
     {
         "echasnovski/mini.ai",
         config = true,
-        priority = 10
+        event = "VeryLazy"
     },
     {
         "echasnovski/mini.align",
         config = true,
-        keys = "ga"
+        event = "VeryLazy"
     },
     {
         "echasnovski/mini.comment",
         config = true,
-        keys = "gc"
+        event = "VeryLazy"
     },
     {
         "echasnovski/mini.surround",
         config = true,
-        keys = "s"
+        event = "VeryLazy"
     },
     {
         "echasnovski/mini.pick",
@@ -66,18 +38,18 @@ return {
     {
         "echasnovski/mini.pairs",
         config = true,
-        priority = 10
+        event = "VeryLazy"
     },
     {
         "echasnovski/mini.completion",
         config = true,
-        priority = 10
+        event = "VeryLazy"
     },
 
     {
         "echasnovski/mini.splitjoin",
         config = true,
-        keys = "gS"
+        event = "VeryLazy"
     },
 
     {
@@ -106,41 +78,32 @@ return {
         end
     },
     {
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require("gitsigns").setup({
-                signcolumn = false
-            })
-        end
-    },
-    {
         "folke/zen-mode.nvim",
         config = true,
         cmd = "ZenMode"
     },
     {
         "nvim-neorg/neorg",
-        build = function() vim.cmd("Neorg sync-parsers") end,
-        dependencies = { "nvim-lua/plenary.nvim" },
-        cmd = "Neorg",
-        ft = "norg",
-        config = function()
-            require("neorg").setup({
-                load = {
-                    ["core.defaults"] = {},
-                    ["core.concealer"] = {},
-                    ["core.ui.calendar"] = {},
-                    ["core.dirman"] = {
-                        config = {
-                            workspaces = {
-                                semester = "~/Documents/Feb-Jun2023",
-                                summer = "~/Documents/EstudioVerano"
-                            }
-                        }
-                    }
-                }
-            })
-        end
+	lazy = false,
+	version = "*",
+	config = true
+        -- config = function()
+        --     require("neorg").setup({
+        --         load = {
+        --             ["core.defaults"] = {},
+        --             ["core.concealer"] = {},
+        --             ["core.ui.calendar"] = {},
+        --             ["core.dirman"] = {
+        --                 config = {
+        --                     workspaces = {
+        --                         semester = "~/Documents/Feb-Jun2023",
+        --                         summer = "~/Documents/EstudioVerano"
+        --                     }
+        --                 }
+        --             }
+        --         }
+        --     })
+        -- end
     }
 
 }
