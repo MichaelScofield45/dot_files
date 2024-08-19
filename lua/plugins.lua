@@ -1,83 +1,120 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+return {
+    {
+        "echasnovski/mini.statusline",
+        lazy = false,
+        priority = 900,
+        config = true
+    },
+    {
+        "echasnovski/mini.hues",
+        lazy = false,
+        priority = 900,
+        config = function() 
+            vim.cmd([[colorscheme randomhue]])
+         end
+    },
+    {
+        "echasnovski/mini.ai",
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        "echasnovski/mini.align",
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        "echasnovski/mini.comment",
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        "echasnovski/mini.surround",
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        "echasnovski/mini.pick",
+        config = true,
+        keys = {
+            { "<leader>ff", "<cmd>Pick files<cr>" },
+            { "<leader>fg", "<cmd>Pick grep_live<cr>" },
+            { "<leader>fb", "<cmd>Pick buffers<cr>" },
+            { "<leader>fh", "<cmd>Pick help<cr>" }
+        }
+    },
+    {
+        "echasnovski/mini.pairs",
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        "echasnovski/mini.completion",
+        config = true,
+        event = "VeryLazy"
+    },
 
-now(function()
-    vim.o.termguicolors = true
-    vim.cmd.colorscheme("randomhue")
-end)
-now(function() require("mini.statusline").setup() end)
+    {
+        "echasnovski/mini.splitjoin",
+        config = true,
+        event = "VeryLazy"
+    },
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true
+    },
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false
+    },
 
-later(function() require("mini.ai").setup() end)
-later(function() require("mini.surround").setup() end)
-later(function() require("mini.pairs").setup() end)
-later(function() require("mini.align").setup() end)
-later(function() require("mini.comment").setup() end)
-later(function() require("mini.completion").setup() end)
-later(function() require("mini.splitjoin").setup() end)
-later(function() require("mini.extra").setup() end)
-later(function()
-    require("mini.pick").setup()
-    vim.keymap.set("n",  "<leader>ff", "<cmd>Pick files<cr>")
-    vim.keymap.set("n",  "<leader>fg", "<cmd>Pick grep_live<cr>")
-    vim.keymap.set("n",  "<leader>fb", "<cmd>Pick buffers<cr>")
-    vim.keymap.set("n",  "<leader>fh", "<cmd>Pick help<cr>" )
-    vim.keymap.set("n",  "<leader>fl", "<cmd>Pick buf_lines<cr>" )
-    vim.keymap.set("n",  "<leader>fm", "<cmd>Pick marks<cr>" )
-end)
-
--- Use external plugins with `add()`
-now(function()
-  -- Add to current session (install if absent)
-  add("nvim-tree/nvim-web-devicons")
-  require("nvim-web-devicons").setup()
-end)
-
-now(function() add("neovim/nvim-lspconfig") end)
-
-later(function()
-  add({
-    source = "nvim-treesitter/nvim-treesitter",
-    -- Use "master" while monitoring updates in "main"
-    checkout = "master",
-    monitor = "main",
-    -- Perform action after every checkout
-    hooks = { post_checkout = function() vim.cmd("TSUpdate") end },
-  })
-  require("nvim-treesitter.configs").setup({
-    ensure_installed = { "lua", "vimdoc", "zig", "gitcommit" },
-    highlight = { enable = true },
-  })
-end)
-
-now(function()
-  add("folke/zen-mode.nvim")
-  require("zen-mode").setup()
-end)
-
-    
--- TODO: do something about neorg
-    -- {
-    --     "nvim-neorg/neorg",
-    --     build = function() vim.cmd("Neorg sync-parsers") end,
-    --     dependencies = { "nvim-lua/plenary.nvim" },
-    --     cmd = "Neorg",
-    --     ft = "norg",
-    --     config = function()
-    --         require("neorg").setup({
-    --             load = {
-    --                 ["core.defaults"] = {},
-    --                 ["core.concealer"] = {},
-    --                 ["core.ui.calendar"] = {},
-    --                 ["core.dirman"] = {
-    --                     config = {
-    --                         workspaces = {
-    --                             semester = "~/Documents/Feb-Jun2023",
-    --                             summer = "~/Documents/EstudioVerano"
-    --                         }
-    --                     }
-    --                 }
-    --             }
-    --         })
-    --     end
-    -- }
-
--- }
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = {
+                    "norg",
+                    "cpp",
+                    "c",
+                    "javascript",
+                    "python",
+                    "lua",
+                    "zig",
+                    "gitcommit",
+                    "git_rebase",
+                    "rust"
+                },
+                highlight = { enable = true }
+            }
+        end
+    },
+    {
+        "folke/zen-mode.nvim",
+        config = true,
+        cmd = "ZenMode"
+    },
+    {
+        "nvim-neorg/neorg",
+        lazy = false,
+        version = "*",
+        config = function()
+            require("neorg").setup({
+                load = {
+                    ["core.defaults"] = {},
+                    ["core.concealer"] = {},
+                    ["core.keybinds"] = {},
+                    ["core.ui.calendar"] = {},
+                    ["core.dirman"] = {
+                        config = {
+                            workspaces = {
+                                semester = "~/Documents/Feb-Jun2024",
+                            }
+                        }
+                    }
+                }
+            })
+            vim.wo.conceallevel = 2
+        end
+    }
+}
