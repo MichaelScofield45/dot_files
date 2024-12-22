@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "norg", "markdown", "typst" },
   callback = function()
     vim.bo.textwidth = 80
-    vim.bo.formatoptions = "jcroqa"
+    vim.bo.formatoptions = "jroqa"
     vim.keymap.set('n', '<leader>fp', 'gwip', {buffer = 0})
   end,
 })

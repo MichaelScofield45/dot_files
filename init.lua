@@ -40,3 +40,5 @@ require("keymappings")
 require("myfuncs")
 require("autocommands")
 require("lsp")
+
+vim.cmd([[colorscheme tokyonight-night]])

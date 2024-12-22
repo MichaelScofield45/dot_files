@@ -3,7 +3,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local servers = { "zls" }
 
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({})
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+    lspconfig[lsp].setup({capabilities = capabilities})
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
