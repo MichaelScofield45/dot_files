@@ -6,50 +6,30 @@ return {
         opts = {}
     },
     {
-        "echasnovski/mini.statusline",
+        "echasnovski/mini.nvim",
         lazy = false,
         priority = 900,
-        config = true
-    },
-    {
-        "echasnovski/mini.ai",
-        config = true,
-        event = "VeryLazy"
-    },
-    {
-        "echasnovski/mini.align",
-        config = true,
-        event = "VeryLazy"
-    },
-    {
-        "echasnovski/mini.comment",
-        config = true,
-        event = "VeryLazy"
-    },
-    {
-        "echasnovski/mini.surround",
-        config = true,
-        event = "VeryLazy"
-    },
-    {
-        "echasnovski/mini.pick",
-        config = true,
-        keys = {
-            { "<leader>ff", "<cmd>Pick files<cr>" },
-            { "<leader>fg", "<cmd>Pick grep_live<cr>" },
-            { "<leader>fb", "<cmd>Pick buffers<cr>" },
-            { "<leader>fh", "<cmd>Pick help<cr>" }
-        }
-    },
-    {
-        "echasnovski/mini.pairs",
-        config = true,
-        event = "VeryLazy"
-    },
-    {
-        "echasnovski/mini.splitjoin",
-        config = true,
-        event = "VeryLazy"
+        config = function()
+            require("mini.statusline").setup()
+            require("mini.ai").setup()
+            require("mini.align").setup()
+            require("mini.comment").setup()
+            require("mini.surround").setup()
+            require("mini.jump").setup()
+            require("mini.pairs").setup()
+            require("mini.splitjoin").setup()
+            require("mini.pick").setup()
+            require("mini.extra").setup()
+            
+            -- Pick keybinds
+            vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<cr>')
+            vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<cr>')
+            vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<cr>')
+            vim.keymap.set('n', '<leader>fh', '<cmd>Pick history<cr>')
+            vim.keymap.set('n', '<leader>fs', '<cmd>Pick help<cr>') -- s for support
+            vim.keymap.set('n', '<leader>fc', '<cmd>Pick commands<cr>')
+            vim.keymap.set('n', '<leader>fk', '<cmd>Pick keymaps<cr>')
+        end
     },
     {
         "nvim-tree/nvim-web-devicons",
