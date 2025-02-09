@@ -17,6 +17,7 @@ return {
             require("mini.trailspace").setup()
             require("mini.operators").setup()
             require("mini.icons").setup()
+            require("mini.move").setup()
         end,
         keys = {
             -- Pick
