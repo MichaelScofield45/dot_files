@@ -19,3 +19,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 0
   end,
 })
+
+vim.api.nvim_create_autocmd({'UIEnter'}, {
+    callback = function(event)
+        local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
+        if client ~= nil and client.name == "Firenvim" then
+            vim.opt.laststatus = 0
+            vim.opt.winbar = nil
+        end
+    end
+})
