@@ -10,7 +10,15 @@ return {
       require("mini.comment").setup()
       require("mini.surround").setup()
       require("mini.jump").setup()
-      require("mini.pairs").setup()
+      require("mini.pairs").setup({
+        mappings = {
+          ['¿'] = { action = 'open', pair = '¿?', neigh_pattern = '[^\\].' },
+          ['¡'] = { action = 'open', pair = '¡!', neigh_pattern = '[^\\].' },
+
+          ['?'] = { action = 'close', pair = '¿?', neigh_pattern = '[^\\].' },
+          ['!'] = { action = 'close', pair = '¡!', neigh_pattern = '[^\\].' },
+        }
+      })
       require("mini.splitjoin").setup()
       require("mini.pick").setup()
       require("mini.extra").setup()
