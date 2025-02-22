@@ -34,4 +34,5 @@ require("lazy").setup({
 require("keymappings")
 require("myfuncs")
 require("autocommands")
+require("user_commands")
 vim.cmd([[colorscheme tokyonight-night]])
