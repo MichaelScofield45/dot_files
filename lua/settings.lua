@@ -13,6 +13,7 @@ o.hlsearch = true
 o.ignorecase = true
 o.smartcase = true
 o.termguicolors = true
+o.cursorline = true
 o.completeopt = "menuone,noselect"
 o.shortmess = o.shortmess .. 'c'
 o.laststatus = 3
@@ -29,7 +30,6 @@ o.softtabstop = 4
 o.expandtab = true
 
 wo.wrap = false
-wo.colorcolumn = "80"
 wo.number = true
 wo.relativenumber = true
 wo.foldmethod = "expr"
@@ -41,4 +41,3 @@ g.netrw_banner = 0
 g.splitright = true
 g.splitbelow = false
 g.autochdir = true
-
