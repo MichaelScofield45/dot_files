@@ -1,45 +1,34 @@
-return {
-  {
-    "echasnovski/mini.nvim",
-    lazy = false,
-    priority = 900,
-    config = function()
-      require("mini.statusline").setup()
-      require("mini.ai").setup()
-      require("mini.align").setup()
-      require("mini.comment").setup()
-      require("mini.surround").setup()
-      require("mini.jump").setup()
-      require("mini.pairs").setup({
-        mappings = {
-          ['¿'] = { action = 'open', pair = '¿?', neigh_pattern = '[^\\].' },
-          ['¡'] = { action = 'open', pair = '¡!', neigh_pattern = '[^\\].' },
+local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
-          ['?'] = { action = 'close', pair = '¿?', neigh_pattern = '[^\\].' },
-          ['!'] = { action = 'close', pair = '¡!', neigh_pattern = '[^\\].' },
-        }
-      })
-      require("mini.splitjoin").setup()
-      require("mini.pick").setup()
-      require("mini.extra").setup()
-      require("mini.trailspace").setup()
-      require("mini.operators").setup()
-      require("mini.icons").setup()
-      require("mini.move").setup()
-    end,
-    keys = {
-      -- Pick
-      { '<leader>ff', '<cmd>Pick files<cr>' },
-      { '<leader>fg', '<cmd>Pick grep_live<cr>' },
-      { '<leader>fb', '<cmd>Pick buffers<cr>' },
-      { '<leader>fh', '<cmd>Pick history<cr>' },
-      { '<leader>fs', '<cmd>Pick help<cr>' },
-      { '<leader>fc', '<cmd>Pick commands<cr>' },
-      { '<leader>fk', '<cmd>Pick keymaps<cr>' },
+now(function() require('mini.icons').setup() end)
+now(function() require('mini.statusline').setup() end)
 
-      -- Trailspace
-      { '<leader>tr', function() MiniTrailspace.trim() end },
-      { '<leader>tl', function() MiniTrailspace.trim_last_lines() end }
+later(function() require('mini.ai').setup() end)
+later(function() require('mini.comment').setup() end)
+later(function() require('mini.operators').setup() end)
+later(function() require('mini.splitjoin').setup() end)
+later(function() require('mini.extra').setup() end)
+later(function() require('mini.surround').setup() end)
+later(function()
+  require('mini.pick').setup()
+  vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<cr>')
+  vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<cr>')
+  vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<cr>')
+  vim.keymap.set('n', '<leader>fh', '<cmd>Pick history<cr>')
+  vim.keymap.set('n', '<leader>fs', '<cmd>Pick help<cr>')
+  vim.keymap.set('n', '<leader>fc', '<cmd>Pick commands<cr>')
+  vim.keymap.set('n', '<leader>fk', '<cmd>Pick keymaps<cr>')
+end)
+later(function()
+  require('mini.trailspace').setup()
+  vim.keymap.set('n', '<leader>tr', function() MiniTrailspace.trim() end)
+  vim.keymap.set('n', '<leader>tl', function() MiniTrailspace.trim_last_lines() end)
+end)
+later(function()
+  require('mini.pairs').setup({
+    mappings = {
+      ['¿'] = { action = 'open', pair = '¿?', neigh_pattern = '[^\\].' },
+      ['¡'] = { action = 'open', pair = '¡!', neigh_pattern = '[^\\].' },
     }
-  }
-}
+  })
+end)
