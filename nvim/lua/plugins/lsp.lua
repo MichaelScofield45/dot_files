@@ -3,7 +3,6 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 now(function()
   add({
     source = 'neovim/nvim-lspconfig',
-    depends = { 'saghen/blink.cmp' },
   })
 
   local lspconfig = require('lspconfig')
@@ -11,7 +10,6 @@ now(function()
   local servers = { 'zls' }
 
   for _, lsp in ipairs(servers) do
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
     lspconfig[lsp].setup({capabilities = capabilities})
   end
 

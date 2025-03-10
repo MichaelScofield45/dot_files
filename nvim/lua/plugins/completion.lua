@@ -1,21 +1,16 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local gen_loader = require('mini.snippets').gen_loader
 
 now(function()
   add({
-    source = 'saghen/blink.cmp',
-    depends = { 'rafamadriz/friendly-snippets' },
-    checkout = 'v0.12.4',
-  })
-
-
-  require('blink.cmp').setup({
-    keymap = { preset = 'default' },
-    appearance = {
-      use_nvim_cmp_as_default = true,
-      nerd_font_variant = 'normal'
-    },
-    sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
-    },
+    source = 'rafamadriz/friendly-snippets'
   })
 end)
+
+require('mini.completion').setup()
+require('mini.snippets').setup({
+  snippets = {
+    gen_loader.from_file('../snippets/global.json'),
+    gen_loader.from_lang(),
+  },
+})
