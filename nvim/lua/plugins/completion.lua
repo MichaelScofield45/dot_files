@@ -10,7 +10,7 @@ end)
 require('mini.completion').setup()
 require('mini.snippets').setup({
   snippets = {
-    gen_loader.from_file('../snippets/global.json'),
+    gen_loader.from_file('~/.config/dot_files/nvim/snippets/global.json'),
     gen_loader.from_lang(),
   },
 })

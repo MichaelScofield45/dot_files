@@ -1,0 +1,7 @@
+{
+  "Single Dialogue": {
+      "prefix": "sdl",
+      "body": "— ${0:Dialogo Simple}"
+  }
+}
+
