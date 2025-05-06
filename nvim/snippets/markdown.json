@@ -1,7 +1,11 @@
 {
   "Single Dialogue": {
-      "prefix": "sdl",
-      "body": "— ${0:Dialogo Simple}"
+      "prefix": "sd",
+      "body": "—${0:Dialogo Simple}"
+  },
+  "Complex Dialogue": {
+      "prefix": "cd",
+      "body": "—${1:Primer Dialogo} —${2:Personaje}—$3 ${0:Segundo Dialogo}"
   }
 }
 
