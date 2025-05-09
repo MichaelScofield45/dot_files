@@ -14,7 +14,7 @@ o.ignorecase = true
 o.smartcase = true
 o.termguicolors = true
 o.cursorline = true
-o.completeopt = "menuone,noselect"
+o.completeopt = "menuone,noselect,fuzzy"
 o.shortmess = o.shortmess .. 'c'
 o.laststatus = 3
 o.winbar = "%=%m %f"
