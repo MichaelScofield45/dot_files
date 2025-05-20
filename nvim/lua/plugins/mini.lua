@@ -4,6 +4,7 @@ now(function() require('mini.icons').setup() end)
 now(function() require('mini.statusline').setup() end)
 
 later(function() require('mini.ai').setup() end)
+later(function() require('mini.align').setup() end)
 later(function() require('mini.comment').setup() end)
 later(function() require('mini.operators').setup() end)
 later(function() require('mini.splitjoin').setup() end)
