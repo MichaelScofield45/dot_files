@@ -1,6 +1,7 @@
 require('plugins.colorscheme')
 require('plugins.mini')
 require('plugins.completion')
+require('plugins.hardtime')
 require('plugins.lsp')
 require('plugins.treesitter')
 require('plugins.zk')
