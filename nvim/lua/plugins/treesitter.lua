@@ -20,6 +20,9 @@ later(function()
       'python',
       'norg'
     },
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      disable = { 'markdown' },
+    },
   })
 end)
