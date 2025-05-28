@@ -1,18 +1,10 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
-later(function()
+now(function()
   add({ source = 'zk-org/zk-nvim' })
-  require('zk').setup({
-    picker = 'minipick',
-    lsp = {
-      config = {
-        name = "zk",
-        cmd = { "zk", "lsp" },
-        filetypes = { "markdown" },
-      },
-      auto_attach = {
-        enabled = true,
-      },
-    },
-  })
+  require('zk').setup({ picker = 'minipick' })
+  vim.keymap.set('n', '<leader>zo', '<Cmd>ZkNotes<CR>')
+  vim.keymap.set('v', '<leader>zf', ":ZkMatch<CR>")
+  vim.keymap.set('v', '<leader>zt', ":ZkNewFromTitleSelection<CR>")
+  vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>")
 end)

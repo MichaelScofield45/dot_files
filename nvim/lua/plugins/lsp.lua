@@ -5,14 +5,6 @@ now(function()
     source = 'neovim/nvim-lspconfig',
   })
 
-  local lspconfig = require('lspconfig')
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  local servers = { 'zls' }
-
-  for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({capabilities = capabilities})
-  end
-
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
@@ -22,8 +14,6 @@ now(function()
       vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
       vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
       vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
       vim.keymap.set('n', '<leader>f', function()
         vim.lsp.buf.format { async = true }
