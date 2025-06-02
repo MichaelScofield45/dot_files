@@ -20,7 +20,16 @@ later(function()
   vim.keymap.set('n', '<leader>fh', '<cmd>Pick history<cr>')
   vim.keymap.set('n', '<leader>fs', '<cmd>Pick help<cr>')
   vim.keymap.set('n', '<leader>fc', '<cmd>Pick commands<cr>')
+  vim.keymap.set(
+    'n',
+    '<leader>fo',
+    function()
+      vim.cmd([[Pick colorschemes]])
+      require('mini.colors').get_colorscheme():add_transparency():apply()
+    end
+  )
   vim.keymap.set('n', '<leader>fk', '<cmd>Pick keymaps<cr>')
+  vim.keymap.set('n', '<leader>fm', '<cmd>Pick marks<cr>')
 end)
 later(function()
   require('mini.trailspace').setup()
