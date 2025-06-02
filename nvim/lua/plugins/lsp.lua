@@ -1,5 +1,7 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
+vim.lsp.enable('tinymist')
+
 now(function()
   add({
     source = 'neovim/nvim-lspconfig',
