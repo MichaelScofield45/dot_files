@@ -22,7 +22,6 @@ later(function()
     },
     highlight = {
       enable = true,
-      disable = { 'markdown' },
     },
   })
 end)
