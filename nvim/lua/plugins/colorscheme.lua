@@ -31,3 +31,12 @@ later(function()
     transparent = true,
   })
 end)
+
+later(function()
+  add({ source = 'ribru17/bamboo.nvim' })
+  require('bamboo').setup()
+end)
+
+later(function()
+  add({ source = 'Koalhack/darcubox-nvim' })
+end)
