@@ -1,0 +1,6 @@
+{
+    "Empty Tag": {
+        "prefix": "<>",
+        "body": "<${1:tag name}></${1:tag name}>$0"
+    }
+}
