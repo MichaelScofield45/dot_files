@@ -6,10 +6,14 @@ now(function()
 end)
 
 require('mini.completion').setup()
+
+local lang_patterns = {
+  markdown_inline = { 'markdown.json' },
+}
 require('mini.snippets').setup({
   snippets = {
     gen_loader.from_file('~/.config/dot_files/nvim/snippets/global.json'),
-    gen_loader.from_lang(),
+    gen_loader.from_lang({ lang_patterns = lang_patterns }),
   },
 })
 MiniSnippets.start_lsp_server()

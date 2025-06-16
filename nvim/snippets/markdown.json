@@ -5,7 +5,7 @@
   },
   "Complex Dialogue": {
       "prefix": "cd",
-      "body": "—${1:Primer Dialogo} —${2:Personaje}—$3 ${0:Segundo Dialogo}"
+      "body": "—${1:Primer Dialogo}\n—${2:Personaje}—$3\n${0:Segundo Dialogo}"
   }
 }
 
