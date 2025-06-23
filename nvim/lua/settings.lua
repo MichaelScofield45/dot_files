@@ -1,33 +1,36 @@
 -- meta-accesors as short variables
-local o = vim.o
-local wo = vim.wo
+local opt = vim.opt
+local opt_local = vim.opt_local
 local bo = vim.bo
+local wo = vim.wo
 local g = vim.g -- rarely used
 
 -- General Settings
-o.hidden = true
-o.incsearch = true
-o.mouse = 'a'
-o.showmode = false
-o.hlsearch = true
-o.ignorecase = true
-o.smartcase = true
-o.termguicolors = true
-o.cursorline = true
-o.completeopt = "menuone,noselect,fuzzy"
-o.shortmess = o.shortmess .. 'c'
-o.laststatus = 3
-o.winbar = "%=%m %f"
+opt.hidden = true
+opt.incsearch = true
+opt.mouse = 'a'
+opt.showmode = false
+opt.hlsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.termguicolors = true
+opt.cursorline = true
+opt.completeopt = { 'menuone', 'noselect', 'fuzzy', 'nosort' }
+opt.wildoptions = { 'pum', 'tagfile', 'fuzzy' }
+opt.laststatus = 3
+opt.winbar = "%=%m %f"
+opt.splitright = true
+opt.splitbelow = false
 
 bo.undofile = true
 
 -- Tabs & Indentation
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
-o.tabstop = 4
-o.softtabstop = 4
-o.expandtab = true
+opt_local.tabstop = 4
+opt_local.softtabstop = 4
+opt_local.shiftwidth = 4
+opt_local.tabstop = 4
+opt_local.softtabstop = 4
+opt_local.expandtab = true
 
 wo.wrap = false
 wo.number = true
@@ -38,6 +41,3 @@ wo.foldenable = false
 wo.conceallevel = 3
 
 g.netrw_banner = 0
-g.splitright = true
-g.splitbelow = false
-g.autochdir = true
