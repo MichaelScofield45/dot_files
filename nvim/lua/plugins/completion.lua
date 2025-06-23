@@ -1,19 +1,12 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-local gen_loader = require('mini.snippets').gen_loader
 
-now(function()
-  add({ source = 'rafamadriz/friendly-snippets' })
-end)
-
-require('mini.completion').setup()
-
-local lang_patterns = {
-  markdown_inline = { 'markdown.json' },
-}
-require('mini.snippets').setup({
-  snippets = {
-    gen_loader.from_file('~/.config/dot_files/nvim/snippets/global.json'),
-    gen_loader.from_lang({ lang_patterns = lang_patterns }),
-  },
+require('mini.completion').setup({
+  lsp_completion = { source_func = 'omnifunc', auto_setup = false },
 })
-MiniSnippets.start_lsp_server()
+
+vim.lsp.config('*', {capabilities = MiniCompletion.get_lsp_capabilities()})
+
+local on_attach = function(args)
+  vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+end
+vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
