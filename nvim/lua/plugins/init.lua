@@ -1,5 +1,6 @@
 require('plugins.colorscheme')
 require('plugins.mini')
+require('plugins.markview')
 require('plugins.snippets')
 require('plugins.completion')
 require('plugins.hardtime')
