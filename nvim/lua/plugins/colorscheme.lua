@@ -4,7 +4,6 @@ require('mini.colors').setup()
 now(function()
   add({ source = 'webhooked/kanso.nvim' })
   require('kanso').setup({
-    transparent = true,
   })
   vim.cmd([[colorscheme kanso]])
 end)
@@ -28,7 +27,6 @@ later(function()
   add({ source = 'folke/tokyonight.nvim' })
   require('tokyonight').setup({
     style = 'night',
-    transparent = true,
   })
 end)
 
