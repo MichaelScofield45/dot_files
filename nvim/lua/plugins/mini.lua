@@ -1,4 +1,8 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+      local on_attach = function(args)
+        vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+      end
+      vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
 now(function() require('mini.icons').setup() end)
 now(function() require('mini.statusline').setup() end)
@@ -29,7 +33,6 @@ later(function()
     '<leader>fo',
     function()
       vim.cmd([[Pick colorschemes]])
-      require('mini.colors').get_colorscheme():add_transparency():apply()
     end
   )
   vim.keymap.set('n', '<leader>fk', '<cmd>Pick keymaps<cr>')
@@ -45,6 +48,8 @@ later(function()
     mappings = {
       ['¿'] = { action = 'open', pair = '¿?', neigh_pattern = '[^\\].' },
       ['¡'] = { action = 'open', pair = '¡!', neigh_pattern = '[^\\].' },
+      ['?'] = { action = 'close', pair = '¿?', neigh_pattern = '[^\\].' },
+      ['!'] = { action = 'close', pair = '¡!', neigh_pattern = '[^\\].' },
     }
   })
 end)
