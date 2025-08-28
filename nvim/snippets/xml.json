@@ -1,0 +1,14 @@
+{
+  "Custom Tag": {
+      "prefix": "tg",
+      "body": "<${1:tag name}>$0</${1:tag name}>"
+  },
+  "XSL Tag": {
+      "prefix": "xtg",
+      "body": "<xsl:${1:tag name}>$0</xsl:${1:tag name}>"
+  },
+  "Attribute": {
+      "prefix": "att",
+      "body": "$1=\"$2\"$0"
+  }
+}
