@@ -1,12 +1,9 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local gen_loader = require('mini.snippets').gen_loader
 
-now(function()
-  add({ source = 'rafamadriz/friendly-snippets' })
-end)
-
 local lang_patterns = {
   markdown_inline = { 'markdown.json' },
+  xslt = { 'xml.json' },
 }
 
 require('mini.snippets').setup({
@@ -16,4 +13,4 @@ require('mini.snippets').setup({
   },
 })
 
-MiniSnippets.start_lsp_server()
+-- MiniSnippets.start_lsp_server()
