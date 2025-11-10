@@ -1,14 +1,15 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-      local on_attach = function(args)
-        vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
-      end
-      vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
+local on_attach = function(args)
+  vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+end
+vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
 now(function() require('mini.icons').setup() end)
 now(function() require('mini.statusline').setup() end)
 
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.align').setup() end)
+later(function() require('mini.bracketed').setup() end)
 later(function() require('mini.comment').setup() end)
 later(function() require('mini.operators').setup() end)
 later(function() require('mini.splitjoin').setup() end)
@@ -28,13 +29,7 @@ later(function()
   vim.keymap.set('n', '<leader>fh', '<cmd>Pick history<cr>')
   vim.keymap.set('n', '<leader>fs', '<cmd>Pick help<cr>')
   vim.keymap.set('n', '<leader>fc', '<cmd>Pick commands<cr>')
-  vim.keymap.set(
-    'n',
-    '<leader>fo',
-    function()
-      vim.cmd([[Pick colorschemes]])
-    end
-  )
+  vim.keymap.set('n', '<leader>fo', '<cmd>Pick colorschemes<cr>')
   vim.keymap.set('n', '<leader>fk', '<cmd>Pick keymaps<cr>')
   vim.keymap.set('n', '<leader>fm', '<cmd>Pick marks<cr>')
 end)
