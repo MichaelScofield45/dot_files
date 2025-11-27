@@ -1,11 +1,11 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 require('mini.colors').setup()
+vim.cmd([[colorscheme miniwinter]])
 
-now(function()
+later(function()
   add({ source = 'webhooked/kanso.nvim' })
   require('kanso').setup({
   })
-  vim.cmd([[colorscheme kanso]])
 end)
 
 later(function()
