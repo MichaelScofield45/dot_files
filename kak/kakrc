@@ -1,0 +1,5 @@
+colorscheme tokyo-night-night
+add-highlighter global/ number-lines -relative -hlcursor
+map global insert <c-w> <esc>bc
+map global user b ":buffer " -docstring 'Pick buffers'
+map global normal <c-6> :buffer-previous<ret>
