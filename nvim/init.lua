@@ -71,6 +71,8 @@ local on_attach = function(args)
 end
 vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
+vim.cmd.packadd('nvim.undotree')
+
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 require('mini.icons').setup()
