@@ -37,8 +37,18 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.termguicolors = true
 opt.cursorline = true
-opt.completeopt = { 'menuone', 'noselect', 'fuzzy', 'nosort' }
-opt.wildoptions = { 'pum', 'tagfile', 'fuzzy' }
+opt.completeopt = { 'menuone', 'noselect', 'fuzzy' }
+opt.wildoptions = { 'pum', 'fuzzy' }
+opt.wildignorecase = true
+opt.pumheight = 10
+
+if vim.fn.has('nvim-0.12') == 1 then
+  opt.pummaxwidth = 100
+  opt.pumborder = 'single'
+  -- require('vim._extui').enable({ enable = true })
+end
+
+opt.winborder = 'single'
 opt.laststatus = 3
 opt.winbar = "%=%m %f"
 opt.splitright = true
