@@ -76,12 +76,34 @@ g.netrw_banner = 0
 
 vim.keymap.set('n', '<leader>w', '<cmd>update<cr>')
 
+vim.keymap.set({ "n", "x", "o" }, "<A-o>", function()
+	if vim.treesitter.get_parser(nil, nil, { error = false }) then
+		require("vim.treesitter._select").select_parent(vim.v.count1)
+	else
+		vim.lsp.buf.selection_range(vim.v.count1)
+	end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+
+vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
+	if vim.treesitter.get_parser(nil, nil, { error = false }) then
+		require("vim.treesitter._select").select_child(vim.v.count1)
+	else
+		vim.lsp.buf.selection_range(-vim.v.count1)
+	end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
 local on_attach = function(args)
   vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
 end
 vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
 vim.cmd.packadd('nvim.undotree')
+vim.keymap.set("n", "<leader>u", function()
+	require("undotree").open({
+		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
+	})
+end, { desc = "[U]ndotree toggle" })
 
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
@@ -160,8 +182,8 @@ end
 vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
 now(function()
-  add({ source = 'https://github.com/bluz71/vim-moonfly-colors' })
-  vim.cmd([[colorscheme moonfly]])
+  add({ source = 'https://github.com/vague-theme/vague.nvim' })
+  vim.cmd.colorscheme('vague')
 end)
 
 now(function ()
