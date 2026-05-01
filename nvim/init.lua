@@ -219,7 +219,7 @@ now(function()
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
       vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
       vim.keymap.set('n', '<leader>grn', vim.lsp.buf.rename, opts)
-      vim.keymap.set('n', '<leader>f', function()
+      vim.keymap.set('n', '<leader><leader>f', function()
         vim.lsp.buf.format { async = true }
       end, opts)
     end,
