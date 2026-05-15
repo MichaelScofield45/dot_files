@@ -1,5 +1,12 @@
 colorscheme tokyo-night-night
 add-highlighter global/ number-lines -relative -hlcursor
 map global insert <c-w> <esc>bc
+map global insert <tab> "  "
 map global user b ":buffer " -docstring 'Pick buffers'
+map global user w ":write<ret>" -docstring 'Write current buffer to file'
 map global normal <c-6> :buffer-previous<ret>
+define-command file-picker %{
+    prompt -shell-script-candidates 'fd --type file' open: %{ edit -existing %val{text} }
+}
+map global user f :file-picker<ret> -docstring 'Pick files'
+set-option global ui_options terminal_status_on_top=true
