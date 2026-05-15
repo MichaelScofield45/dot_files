@@ -1,21 +1,3 @@
--- Clone 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
-
-local path_package = vim.fn.stdpath('data') .. '/site/'
-local mini_path = path_package .. 'pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    'https://github.com/nvim-mini/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
-
--- Set up 'mini.deps' (customize to your liking)
-require('mini.deps').setup({ path = { package = path_package } })
-
 vim.keymap.set("n", "<Space>", "<NOP>", {silent = true, noremap = true} )
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -45,7 +27,13 @@ opt.pumheight = 10
 if vim.fn.has('nvim-0.12') == 1 then
   opt.pummaxwidth = 100
   opt.pumborder = 'single'
-  -- require('vim._extui').enable({ enable = true })
+  require('vim._core.ui2').enable({
+    enable = true,
+    msg = {
+      target = 'cmd',
+      timeout = 4000, -- Time a message is visible in the message window.
+    },
+  })
 end
 
 opt.winborder = 'single'
@@ -74,87 +62,78 @@ wo.conceallevel = 3
 
 g.netrw_banner = 0
 
-vim.keymap.set('n', '<leader>w', '<cmd>update<cr>')
+vim.keymap.set('n', '<leader>w', '<cmd>update<cr>', { desc = 'Write (update) current file to disk' })
+vim.keymap.set('n', '<leader>W', '<cmd>write<cr>', { desc = 'Write (regular write) current file to disk' })
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy visual selection to system register' })
 
 vim.keymap.set({ "n", "x", "o" }, "<A-o>", function()
-	if vim.treesitter.get_parser(nil, nil, { error = false }) then
-		require("vim.treesitter._select").select_parent(vim.v.count1)
-	else
-		vim.lsp.buf.selection_range(vim.v.count1)
-	end
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
 end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
 
 
 vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
-	if vim.treesitter.get_parser(nil, nil, { error = false }) then
-		require("vim.treesitter._select").select_child(vim.v.count1)
-	else
-		vim.lsp.buf.selection_range(-vim.v.count1)
-	end
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
-
-local on_attach = function(args)
-  vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
-end
-vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
 vim.cmd.packadd('nvim.undotree')
 vim.keymap.set("n", "<leader>u", function()
-	require("undotree").open({
-		command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
-	})
+  require("undotree").open({
+    command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
+  })
 end, { desc = "[U]ndotree toggle" })
 
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
+vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 require('mini.statusline').setup()
 require('mini.cmdline').setup()
 require('mini.clue').setup()
+require('mini.ai').setup()
+require('mini.align').setup()
+require('mini.bracketed').setup()
+require('mini.comment').setup()
+require('mini.operators').setup()
+require('mini.splitjoin').setup()
+require('mini.move').setup()
+require('mini.jump').setup()
+require('mini.extra').setup()
+require('mini.surround').setup()
 
-later(function() require('mini.ai').setup() end)
-later(function() require('mini.align').setup() end)
-later(function() require('mini.bracketed').setup() end)
-later(function() require('mini.comment').setup() end)
-later(function() require('mini.operators').setup() end)
-later(function() require('mini.splitjoin').setup() end)
-later(function() require('mini.move').setup() end)
-later(function() require('mini.jump').setup() end)
-later(function() require('mini.extra').setup() end)
-later(function()
-  require('mini.files').setup()
-  vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<cr>')
-end)
-later(function() require('mini.surround').setup() end)
-later(function()
-  require('mini.pick').setup()
-  vim.keymap.set('n', '<leader>f', '<cmd>Pick files<cr>')
-  vim.keymap.set('n', '<leader>g', '<cmd>Pick grep_live<cr>')
-  vim.keymap.set('n', '<leader>b', '<cmd>Pick buffers<cr>')
-  vim.keymap.set('n', '<leader><leader>h', '<cmd>Pick history<cr>')
-  vim.keymap.set('n', '<leader>h', '<cmd>Pick help<cr>')
-  vim.keymap.set('n', '<leader><leader>c', '<cmd>Pick commands<cr>')
-  vim.keymap.set('n', '<leader>c', '<cmd>Pick colorschemes<cr>')
-  vim.keymap.set('n', '<leader>k', '<cmd>Pick keymaps<cr>')
-  vim.keymap.set('n', '<leader>m', '<cmd>Pick marks<cr>')
-end)
-later(function()
-  require('mini.trailspace').setup()
-  vim.keymap.set('n', '<leader>tr', MiniTrailspace.trim)
-  vim.keymap.set('n', '<leader>tl', MiniTrailspace.trim_last_lines)
-end)
-later(function()
-  require('mini.pairs').setup({
-    mappings = {
-      ['¿'] = { action = 'open', pair = '¿?', neigh_pattern = '[^\\].' },
-      ['¡'] = { action = 'open', pair = '¡!', neigh_pattern = '[^\\].' },
-      ['«'] = { action = 'open', pair = '«»', neigh_pattern = '[^\\].' },
-      ['?'] = { action = 'close', pair = '¿?', neigh_pattern = '[^\\].' },
-      ['!'] = { action = 'close', pair = '¡!', neigh_pattern = '[^\\].' },
-      ['»'] = { action = 'close', pair = '«»', neigh_pattern = '[^\\].' },
-    }
-  })
-end)
+require('mini.files').setup()
+vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<cr>')
+
+require('mini.pick').setup()
+vim.keymap.set('n', '<leader>f', '<cmd>Pick files<cr>')
+vim.keymap.set('n', '<leader>g', '<cmd>Pick grep_live<cr>')
+vim.keymap.set('n', '<leader>b', '<cmd>Pick buffers<cr>')
+vim.keymap.set('n', '<leader><leader>h', '<cmd>Pick history<cr>')
+vim.keymap.set('n', '<leader>h', '<cmd>Pick help<cr>')
+vim.keymap.set('n', '<leader><leader>c', '<cmd>Pick commands<cr>')
+vim.keymap.set('n', '<leader>c', '<cmd>Pick colorschemes<cr>')
+vim.keymap.set('n', '<leader>k', '<cmd>Pick keymaps<cr>')
+vim.keymap.set('n', '<leader>m', '<cmd>Pick marks<cr>')
+
+require('mini.trailspace').setup()
+vim.keymap.set('n', '<leader>tr', MiniTrailspace.trim)
+vim.keymap.set('n', '<leader>tl', MiniTrailspace.trim_last_lines)
+
+require('mini.pairs').setup({
+  mappings = {
+    ['¿'] = { action = 'open', pair = '¿?', neigh_pattern = '[^\\].' },
+    ['¡'] = { action = 'open', pair = '¡!', neigh_pattern = '[^\\].' },
+    ['«'] = { action = 'open', pair = '«»', neigh_pattern = '[^\\].' },
+    ['?'] = { action = 'close', pair = '¿?', neigh_pattern = '[^\\].' },
+    ['!'] = { action = 'close', pair = '¡!', neigh_pattern = '[^\\].' },
+    ['»'] = { action = 'close', pair = '«»', neigh_pattern = '[^\\].' },
+  }
+})
 
 local gen_loader = require('mini.snippets').gen_loader
 
@@ -165,7 +144,7 @@ local lang_patterns = {
 
 require('mini.snippets').setup({
   snippets = {
-    gen_loader.from_file('~/.config/dot_files/nvim/snippets/global.json'),
+    gen_loader.from_file('snippets/global.json'),
     gen_loader.from_lang({ lang_patterns = lang_patterns }),
   },
 })
@@ -181,70 +160,37 @@ local on_attach = function(args)
 end
 vim.api.nvim_create_autocmd('LspAttach', { callback = on_attach })
 
-now(function()
-  add({ source = 'https://github.com/vague-theme/vague.nvim' })
-  vim.cmd.colorscheme('vague')
-end)
+vim.pack.add({ 'https://github.com/vague-theme/vague.nvim' })
+vim.cmd.colorscheme('vague')
 
-now(function ()
-	add({ source = 'nvim-orgmode/orgmode' })
-	require('orgmode').setup({
-		org_agenda_files = '~/Documents/notes.org',
-		org_default_notes_file = '~/Documents/notes.org',
-	})
-end)
+vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
+require('orgmode').setup({
+  org_agenda_files = '~/Documents/notes.org',
+  org_default_notes_file = '~/Documents/notes.org',
+})
 
-vim.lsp.enable('zls')
-vim.lsp.enable('tinymist')
-vim.lsp.enable('kotlin-language-server')
-vim.lsp.enable('dartls')
-
+vim.lsp.enable({ 'zls', 'tinymist', 'kotlin-language-server', 'dartls' })
 vim.diagnostic.config({
   virtual_text = true,
 })
 
-now(function()
-  add({
-    source = 'neovim/nvim-lspconfig',
-  })
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>grn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader><leader>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
 
-  vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-    callback = function(ev)
-      -- Buffer local mappings.
-      -- See `:help vim.lsp.*` for documentation on any of the below functions
-      local opts = { buffer = ev.buf }
-      vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
-      vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-      vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<leader>grn', vim.lsp.buf.rename, opts)
-      vim.keymap.set('n', '<leader><leader>f', function()
-        vim.lsp.buf.format { async = true }
-      end, opts)
-    end,
-  })
-end)
+vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
 
-later(function()
-  add({
-    source = 'nvim-treesitter/nvim-treesitter',
-    -- Use 'master' while monitoring updates in 'main'
-    checkout = 'master',
-    monitor = 'main',
-    -- Perform action after every checkout
-    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
-  })
-  -- Possible to immediately execute code which depends on the added plugin
-  require('nvim-treesitter.configs').setup({
-    ensure_installed = {'lua', 'vimdoc', 'markdown', 'zig', 'gitcommit', 'python',},
-    highlight = {
-      enable = true,
-    },
-  })
-end)
-
-later(function()
-  add({ source = 'folke/zen-mode.nvim', })
-  require('zen-mode').setup()
-end)
+vim.pack.add({ 'https://github.com/folke/zen-mode.nvim', })
+require('zen-mode').setup()
