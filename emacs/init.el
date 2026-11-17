@@ -256,6 +256,11 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
   (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
   (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t))
 
+(use-package ledger-mode
+  :ensure t
+  :mode ("\\.dat\\'")
+  :custom (ledger-clear-whole-transactions 1))
+
 (use-package ef-themes
   :ensure t
   :init (load-theme 'ef-dark t))
