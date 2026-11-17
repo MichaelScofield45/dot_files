@@ -15,24 +15,24 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
   :custom
   (make-backup-files nil)
   (display-line-numbers-type 'relative)
   (tab-always-indent 'complete)
+  (auto-save-default nil)
+  (text-mode-ispell-word-completion nil)
+  (read-extended-command-predicate #'command-completion-default-include-p)
 
   (text-mode-ispell-word-completion nil)
   (read-extended-command-predicate #'command-completion-default-include-p)
 
   :bind
   ("C-x C-b" . 'ibuffer)
-  ("C-c l" . #'org-store-link)
-  ("C-c a" . #'org-agenda)
-  ("C-c c" . #'org-capture)
 
   :config
   (delete-selection-mode 1)
-  (global-display-line-numbers-mode t)
   (add-to-list 'default-frame-alist
 	       '(font . "Ioskeley Mono-14"))
   (which-key-mode t)
@@ -41,6 +41,7 @@
   (global-set-key (kbd "C-c c") #'org-capture)
   (put 'upcase-region 'disabled nil)
   (put 'downcase-region 'disabled nil)
+  (repeat-mode 1)
   (electric-pair-mode 1))
 
 (use-package savehist
