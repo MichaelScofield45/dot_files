@@ -34,7 +34,7 @@
   (delete-selection-mode 1)
   (global-display-line-numbers-mode t)
   (add-to-list 'default-frame-alist
-	       '(font . "Iosevka-14"))
+	       '(font . "Ioskeley Mono-14"))
   (which-key-mode t)
   (global-set-key (kbd "C-c l") #'org-store-link)
   (global-set-key (kbd "C-c a") #'org-agenda)
