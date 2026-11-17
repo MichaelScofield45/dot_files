@@ -60,10 +60,6 @@
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package surround
-  :ensure t
-  :bind-keymap ("M-'" . surround-keymap))
-
 (use-package magit
   :ensure t)
 
