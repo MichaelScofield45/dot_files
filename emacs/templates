@@ -1,0 +1,6 @@
+text-mode
+
+(sdg "—" q)
+(cdg "—" p
+     n "—" p "—" p
+     n p)
