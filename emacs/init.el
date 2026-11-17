@@ -213,6 +213,19 @@
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf))
 
+(use-package org
+  :ensure nil
+  :custom
+  (org-startup-indented t))
+
+(use-package yaml-ts-mode
+  :ensure nil
+  :mode ("\\.yaml\\'" "\\.yml\\'"))
+
+(use-package markdown-ts-mode
+  :ensure nil
+  :mode ("\\.md\\'" "\\.markdown\\'" "\\.mdx\\'")
+  :config (require 'markdown-ts-mode-x))
 
 (use-package ghostel
   :ensure t
